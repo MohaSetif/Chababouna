@@ -1,0 +1,34 @@
+@font-face{
+    font-family: Janna;
+    src: url(/fonts/Janna_LT_Bold.ttf)
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgba(141, 221, 150, 0.52);
+    font-family: Janna;
+}
+
+.col{
+    direction: rtl;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #00C630
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}

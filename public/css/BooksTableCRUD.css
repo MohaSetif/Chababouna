@@ -1,0 +1,111 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');*/
+@font-face {
+    font-family: Arslan;
+    src: url(/fonts/Arslan_Wessam.ttf);
+  }
+  @font-face{
+    font-family: Janna;
+    src: url(/fonts/Janna_LT_Bold.ttf)
+  }
+  @font-face{
+    font-family: Uthmanic;
+    src: url(/fonts/Uthmanic.ttf)
+  }
+  @font-face{
+    font-family: Shoroq;
+    src: url(/fonts/Shoroq-Font.ttf)
+  }
+  
+  body{
+      background-color: rgb(231, 227, 245);
+      font-family: Janna;
+      display: block;
+      justify-content: center;
+      text-align: center;
+      font-size: 10px;
+  }
+  
+  .Create{
+    background-color: rgb(43, 197, 43);
+    color: white;
+    font-family: Janna;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .Delete{
+    background-color: rgb(197, 43, 43);
+    color: white;
+    font-family: Janna;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .Edit{
+    background-color: rgb(43, 135, 197);
+    color: white;
+    font-family: Janna;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  #SearchBar{
+    height: 25px;
+    width: 1345px;
+    font-size: 20px;
+    direction: rtl;
+    font-family: Janna;
+    display: block;
+    border: none;
+  }
+  
+    .table{
+      margin-top: 11px;
+      width: 1350px;
+      background-color: white;
+      max-height: 550px;
+      overflow-y: auto;
+    }
+  
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+  
+    table thead th,
+    table tbody td{
+      padding: 15px;
+      border: none;
+      font-weight: 600;
+      font-size: 10px;
+    }
+  
+  table thead th{
+      background-color: rgb(107, 88, 136);
+      color: white;
+      font-size: 13px;
+      position: sticky;
+      top: 0px;
+      width: 50px;
+  }
+  
+  table tbody tr{
+      border-bottom: 1px solid rgb(136, 130, 187);
+      height: 100px;
+  }
+  
+  table tbody tr:hover{
+      background-color: rgb(224, 216, 236);
+  }
+
+    

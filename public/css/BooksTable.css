@@ -1,0 +1,171 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');*/
+@font-face {
+  font-family: Arslan;
+  src: url(/fonts/Arslan_Wessam.ttf);
+}
+@font-face{
+  font-family: Janna;
+  src: url(/fonts/Janna_LT_Bold.ttf)
+}
+@font-face{
+  font-family: Uthmanic;
+  src: url(/fonts/Uthmanic.ttf)
+}
+@font-face{
+  font-family: Shoroq;
+  src: url(/fonts/Shoroq-Font.ttf)
+}
+
+body{
+    background-image: url(/img/various-book-books.jpg);
+    font-family: Janna;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    direction: rtl;
+}
+
+.example input[type=text] {
+  padding: 4px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: right;
+  width: 89.15%;
+  background: #f1f1f1;
+  direction: rtl;
+  font-family: Janna;
+}
+
+.example button {
+  float: right;
+  width: 10%;
+  padding: 10px;
+  background: #0db116;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.example button:hover {
+  background: #74dd7d;
+}
+
+.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+  .table{
+    margin-top: 11px;
+    width: 1350px;
+    background-color: white;
+    max-height: 590px;
+    overflow-y: auto;
+    direction: rtl;
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    height: auto;
+  }
+
+  table thead th,
+  table tbody td{
+    padding: 15px;
+    border: none;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+table thead th{
+    background-color: rgb(20, 131, 47);
+    color: white;
+    font-size: 20px;
+    position: sticky;
+    top: 0px;
+    width: 50px;
+}
+
+table tbody tr{
+    border-bottom: 1px solid rgb(130, 187, 147);
+    height: 150px;
+}
+
+table tbody tr:hover{
+    background-color: rgb(216, 236, 221);
+}
+
+@media (max-width: 560px){
+
+  .body{
+    height: 100vh;
+  }
+
+  .example{
+    width: 76%;
+  }
+
+  .example input[type=text] {
+    font-size: 17px;
+    border: 1px solid grey;
+    float: right;
+    width: 75%;
+    background: #f1f1f1;
+    direction: rtl;
+    font-family: Janna;
+  }
+  
+  .example button {
+    float: right;
+    width: 20%;
+    background: #0db116;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+    .table{
+      margin-top: 11px;
+      width: 100%;
+      background-color: white;
+      max-height: 596px;
+      overflow-y: auto;
+      direction: rtl;
+    }
+
+    table {
+      width: 200%;
+      border-collapse: collapse;
+      background-color: white;
+  }
+
+    table thead th,
+  table tbody td{
+    padding: 5px;
+    border: none;
+    font-weight: 600;
+    font-size: 10px;
+  }
+
+table thead th{
+    background-color: rgb(20, 131, 47);
+    color: white;
+    font-size: 12px;
+    position: sticky;
+    top: 0px;
+    width: 20px;
+}
+
+table tbody tr{
+    border-bottom: 1px solid rgb(130, 187, 147);
+    height: 50px;
+}
+    
+}

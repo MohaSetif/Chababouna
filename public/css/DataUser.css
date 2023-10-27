@@ -1,0 +1,35 @@
+
+@font-face{
+    font-family: Janna;
+    src: url(/fonts/Janna_LT_Bold.ttf)
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Janna;
+}
+
+.content span{
+    margin: 7px;
+    text-align: center;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+h2{
+    border-bottom: 3px dotted black;
+}
+
+div{
+    text-align: center;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

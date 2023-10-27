@@ -1,0 +1,51 @@
+body {
+    font-family: "Nunito", sans-serif;
+}
+
+.form {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0000000f;
+    direction: rtl;
+}
+
+.form div {
+    margin: 10px;
+}
+
+.form input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: 'Nunito';
+    width: 500px;
+}
+
+.form label {
+    display: inherit;
+    font-size: 1.1rem;
+    padding-bottom: 3px;
+    font-weight: 100;
+    color: #9d9d9d;
+}
+
+.form button {
+    border: 1px solid #ddd;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.error {
+    margin: 0;
+    font-size: .8rem;
+    color: red;
+}
+
+h1{
+    color: white;
+}
