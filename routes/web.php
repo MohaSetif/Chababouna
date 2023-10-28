@@ -85,4 +85,13 @@ Route::group(['middleware' => 'auth'], function (){
     
     Route::view('الخيارات', 'LinkCard');
     
+
+
+    //===================== QR CODE SCANNER =====================
+
+    Route::get('/check_user', ['uses' => 'App\Http\Controllers\QrCheckUserController@index']);
+    Route::post('/check_user', ['uses' => 'App\Http\Controllers\QrCheckUserController@checkUser']);
+    Route::get('/generate_code', 'App\Http\Controllers\QrCheckUserController@generate')->name('generate_code');
+
+    Route::view('/check_user_code', 'check_user_code');
 });

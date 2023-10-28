@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                <div class="mt-2 text-gray-800 dark:text-gray-600 text-sm">
                                     ستتم مراجعة استمارة معاوماتك و سنرسل لك رسالة قبول أو رفض عبر بريدك الاكتروني في أقرب وقت ممكن
                                 </div>
                             </div>

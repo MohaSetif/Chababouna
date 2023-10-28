@@ -167,58 +167,58 @@ class ChababounaUserCont extends Controller
             return redirect()->route('chababounausers.index')->with('success', 'تم قبول مستخدم جديد');
             break;
 
-            case('التحضيري'):
-                Tahdiri::create([
-                    'name'=>$chababounauser->name,
-                    'surname'=>$chababounauser->surname,
-                    'sex'=>$chababounauser->sex,
-                    'job'=>$chababounauser->job,
-                    'day'=>$chababounauser->day,
-                    'month'=>$chababounauser->month,
-                    'year'=>$chababounauser->year,
-                    'place'=>$chababounauser->place,
-                    'residence'=>$chababounauser->residence,
-                    'photo'=>$chababounauser->photo,
-                    'local'=>$chababounauser->local,
-                    'tel'=>$chababounauser->tel,
-                ]);
-                if(!empty($req->hasFile('photo'))){
+            // case('التحضيري'):
+            //     Tahdiri::create([
+            //         'name'=>$chababounauser->name,
+            //         'surname'=>$chababounauser->surname,
+            //         'sex'=>$chababounauser->sex,
+            //         'job'=>$chababounauser->job,
+            //         'day'=>$chababounauser->day,
+            //         'month'=>$chababounauser->month,
+            //         'year'=>$chababounauser->year,
+            //         'place'=>$chababounauser->place,
+            //         'residence'=>$chababounauser->residence,
+            //         'photo'=>$chababounauser->photo,
+            //         'local'=>$chababounauser->local,
+            //         'tel'=>$chababounauser->tel,
+            //     ]);
+            //     if(!empty($req->hasFile('photo'))){
 
-                    $image = $req->file('photo');
-                    $photoname = date('YmdHis').'.'.$image->extension();
-                    $filePath = public_path('/uploads/utilisateurs');
-                    $image->move($filePath, $photoname);
-                    $input['photo'] = $photoname;
-                    }
-            return redirect()->route('chababounausers.index')->with('success', 'تم قبول مستخدم جديد');
-            break;
+            //         $image = $req->file('photo');
+            //         $photoname = date('YmdHis').'.'.$image->extension();
+            //         $filePath = public_path('/uploads/utilisateurs');
+            //         $image->move($filePath, $photoname);
+            //         $input['photo'] = $photoname;
+            //         }
+            // return redirect()->route('chababounausers.index')->with('success', 'تم قبول مستخدم جديد');
+            // break;
 
-            case('التمهيدي'):
-                Tamhidi::create([
-                    'name'=>$chababounauser->name,
-                    'surname'=>$chababounauser->surname,
-                    'sex'=>$chababounauser->sex,
-                    'job'=>$chababounauser->job,
-                    'day'=>$chababounauser->day,
-                    'month'=>$chababounauser->month,
-                    'year'=>$chababounauser->year,
-                    'place'=>$chababounauser->place,
-                    'residence'=>$chababounauser->residence,
-                    'photo'=>$chababounauser->photo,
-                    'scholar_year'=>$chababounauser->scholar_year,
-                    'local'=>$chababounauser->local,
-                    'tel'=>$chababounauser->tel,
-                ]);
-                if(!empty($req->hasFile('photo'))){
+            // case('التمهيدي'):
+            //     Tamhidi::create([
+            //         'name'=>$chababounauser->name,
+            //         'surname'=>$chababounauser->surname,
+            //         'sex'=>$chababounauser->sex,
+            //         'job'=>$chababounauser->job,
+            //         'day'=>$chababounauser->day,
+            //         'month'=>$chababounauser->month,
+            //         'year'=>$chababounauser->year,
+            //         'place'=>$chababounauser->place,
+            //         'residence'=>$chababounauser->residence,
+            //         'photo'=>$chababounauser->photo,
+            //         'scholar_year'=>$chababounauser->scholar_year,
+            //         'local'=>$chababounauser->local,
+            //         'tel'=>$chababounauser->tel,
+            //     ]);
+            //     if(!empty($req->hasFile('photo'))){
 
-                    $image = $req->file('photo');
-                    $photoname = date('YmdHis').'.'.$image->extension();
-                    $filePath = public_path('/uploads/utilisateurs');
-                    $image->move($filePath, $photoname);
-                    $input['photo'] = $photoname;
-                    }
-            return redirect()->route('chababounausers.index')->with('success', 'تم قبول مستخدم جديد');
-            break;
+            //         $image = $req->file('photo');
+            //         $photoname = date('YmdHis').'.'.$image->extension();
+            //         $filePath = public_path('/uploads/utilisateurs');
+            //         $image->move($filePath, $photoname);
+            //         $input['photo'] = $photoname;
+            //         }
+            // return redirect()->route('chababounausers.index')->with('success', 'تم قبول مستخدم جديد');
+            // break;
             }
         } elseif ($req->btn == "rejected"){
             $chababounauser->update(['status' => 'مرفوض']);
