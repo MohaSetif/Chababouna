@@ -74,7 +74,7 @@
   });
 </script>
 <style>
-  .scanner, .title{
+  .title{
     direction: rtl;
   }
 
