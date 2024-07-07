@@ -17,9 +17,24 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: #fff;
+    background-color: transparent;
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+  }
+  
+  header a {
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  header.scrolled a {
+    color: black;
+  }
 
 .logo img {
     height: 60px;

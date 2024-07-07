@@ -18,7 +18,7 @@
   ></div>
 </div>
 <body>
-  <header>
+  <header class="fixed z-50 w-full header">
       <div class="auth-links">
           @guest
               @if (Route::has('register'))
@@ -59,6 +59,12 @@
   </header>
 
   <main>
+    <section id="welcome" class="h-screen w-full flex items-center justify-center relative">
+      <img src="/img/Setif.jpeg" alt="Welcome Image" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      <h1 class="text-5xl font-bold text-white z-10 font-arabic">مرحبا بكم في جمعية شبابنا العلمية الثقافية</h1>
+    </section>
+
     <section class="mt-[4rem]" id="main">
       <div class="max-w-6xl mx-auto">
         <h1 class="text-4xl font-bold text-center text-green-800 mb-8 font-arabic">صـفحــتـنا</h1>
@@ -167,7 +173,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-apartment"></i>
                 <div class="card-info-title">
                   <h1>دائمة</h1>
                   <li>التعليم القرآني</li>
@@ -187,7 +192,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-blender-phone"></i>
                 <div class="card-info-title">
                   <h1>دائمة</h1>
                   <li>قفة شهرية</li>
@@ -207,7 +211,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-person-from-portal"></i>
                 <div class="card-info-title">
                   <h1>دائمة</h1>
                   <li>سيارة إسعاف</li>
@@ -227,7 +230,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-unicorn"></i>
                 <div class="card-info-title">
                   <h1>موسمية</h1>
                   <li>دورات في تحفيظ القرآن</li>
@@ -248,7 +250,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-person-to-portal"></i>
                 <div class="card-info-title">
                   <h1>موسمية</h1>
                   <li>مركز الإفطار</li>
@@ -268,7 +269,6 @@
             </div>
             <div class="card-info-wrapper">
               <div class="card-info">
-                <i class="fa-duotone fa-otter"></i>
                 <div class="card-info-title">
                   <h1>موسمية</h1>
                   <li>تقديم وجبات ساخنة محمولة طيلة شهر رمضان</li>
@@ -399,6 +399,19 @@
           card.style.setProperty("--mouse-y", `${y}px`);
         };
       }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('header');
+        var scrollThreshold = 100;
+      
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      });
     </script>
 </body>
 </html>
