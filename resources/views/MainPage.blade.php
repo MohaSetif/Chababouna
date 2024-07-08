@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الصفحة الرئيسية | جمعية شبابنا العلمية الثقافية</title>
-    <link rel="icon" type="image/x-icon" href="/img/android-chrome-512x512.png">
     <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/cards.css">
-    @vite('resources/css/app.css')
+    <link rel="icon" type="image/x-icon" href="/img/android-chrome-512x512.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f6f9fc 0%, #e9f1f7 100%);
+        }
+    </style>
 </head>
-<div
-  class="fixed inset-0 -z-10 size-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"
->
-  <div
-    class="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#e0ffe2,transparent)]"
-  ></div>
-</div>
-<body>
+<body class="gradient-bg">
   <header class="fixed z-50 w-full header">
       <div class="auth-links">
           @guest
@@ -47,7 +47,7 @@
       </div>
       <div class="menu-icon" onclick="toggleMenu()">☰</div>
       <nav id="navbar">
-          <a id="section" onclick="change()" href="#main" class="nav-btn active">صفحتنا</a>
+          <a id="section" onclick="change()" href="#main" class="nav-btn">صفحتنا</a>
           <a id="section" onclick="change()" href="#library" class="nav-btn">مكتبتنا</a>
           <a id="section" onclick="change()" href="#committies" class="nav-btn">لجاننا</a>
           <a id="section" onclick="change()" href="#activities" class="nav-btn">نشاطاتنا</a>
@@ -59,232 +59,280 @@
   </header>
 
   <main>
-    <section id="welcome" class="h-screen w-full flex items-center justify-center relative">
+    <section id="welcome" class="h-screen w-full flex items-center justify-center relative overflow-hidden">
       <img src="/img/Setif.jpeg" alt="Welcome Image" class="absolute inset-0 w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-      <h1 class="text-5xl font-bold text-white z-10 font-arabic">مرحبا بكم في جمعية شبابنا العلمية الثقافية</h1>
+      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      <h1 class="welcome text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-6xl font-bold text-white text-center z-10 px-4 leading-10">
+        <span class="block mb-2 text-green-400">مرحبا بكم في</span>
+        <span class="block text-5xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl mb-4">جمـعــية شبــابـنـا</span>
+        <span class="block text-5xl sm:text-3xl md:text-4xl lg:text-7xl xl:text-8xl">العــلــمــية الثــقــافيـــة</span>
+      </h1>
     </section>
 
-    <section class="mt-[4rem]" id="main">
-      <div class="max-w-6xl mx-auto">
-        <h1 class="text-4xl font-bold text-center text-green-800 mb-8 font-arabic">صـفحــتـنا</h1>
-        <p class="text-lg text-gray-700 mb-8 leading-relaxed font-arabic">
-          جمعية شبابنا هي جمعية علمية ثقافية، اعتمدت سنة 2013م تحت رقم 2013/40م من بلدية سطيف و بمعية مديرية الثقافة لولاية سطيف. شهدت الجمعية تغيرا في القانون الأساسي بتاريخ 2016/07/06م و تغييرا ثان في مهام أعضاء المكتب التنفيذي مرتين الأول بتاريخ 2018/12/29م و الثاني بتاريخ 2019/07/17م. كل هذا من أجل السير الحسن للجمعية. لها أهداف هي:
-        </p>
-        <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-8 font-arabic">
-          <li>تربية الجيل على العلم و الأخلاق و الوطنية.</li>
-          <li>فتح آفاق جديدة أمام الشباب على حقائق العلم و المعرفة و الثقافة.</li>
-          <li>إجياء المناسبات الدينية و الوطنية.</li>
-          <li>ترسيخ حب الوطن في الناشئة.</li>
-          <li>إقامة نشاطات ترفيهية تعليمية تربوية ثقافية.</li>
-          <li>إقامة ملتقيات فكرية ثقافية، أدبية، تاريخية.</li>
-          <li>توعية الشباب حول مخاطر الآفات الاجتماعية.</li>
-          <li>تنظيم رحلات استكشافية سياحية.</li>
-          <li>إنتاج عروض مسرحية.</li>
-          <li>فتح ناد لتعليم اللغة العربية و اللغات الحية.</li>
-          <li>الاهتمام بالمجال السمعي البصري.</li>
-          <li>تنظيم حفلات فنية إنشادية.</li>
-        </ol>
-        <p class="text-lg text-gray-700 leading-relaxed font-arabic">
-          يسهر على هذه الأهداف لجان سخروا أوقاتهم و جهودهم لتحقيقها و هي كما جاءت في المادة 23 من القانون الأساسي للجمعية.
-        </p>
-      </div>
-    </section>
-
-    <div class="max-w-6xl mx-auto">
-      <section class="mt-[4rem] mb-16">
-        <h1 class="text-3xl font-bold text-green-800 mb-6 font-arabic">مكــتبـتـنـا</h1>
-        <p class="text-lg text-gray-700 mb-6 leading-relaxed font-arabic">
-          جمعيتنا مهتمة بجمع الكتب، و كلما ساهم الناس بالتبرع بالكتب كلما كبرت مكتبتنا، و الكتب التي نمتلكها من مختلف التخصصات. يمكنكم أن تتبرعوا بأية كتب أو استلامها خلال شهر، و أن يترك المستلم رقم هاتفه. للمزيد من المعلومات حول مكتبتنا اضغطوا الزر الذي في الأسفل.
-        </p>
-        <a href="/مكتبتنا" class="inline-block bg-green-600 text-white font-bold py-2 rounded hover:bg-green-700 transition duration-300 font-arabic">كتــبـنــا</a>
-      </section>
-
-      <section class="mt-[4rem]">
-        <h1 class="text-3xl font-bold text-green-800 mb-6 font-arabic">لــجـانـنـا</h1>
-        <p class="text-lg text-gray-700 mb-6 leading-relaxed font-arabic">
-          تساعد الجمعية العامة لجان دائمة، مكلفة بدراسة المسائل المتعلقة بأهداف الجمعية. اللجان الدائمة هي ثلاثة:
-        </p>
-
-        <div class="space-y-8">
-          <div>
-            <h2 class="text-2xl font-semibold text-green-700 mb-4 font-arabic">لجنة التربية و التعليم و هي تضم:</h2>
-            
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold text-green-600 mb-2 font-arabic">خلية التعليم القرآني و فيها أربع أقسام:</h3>
-              <ol class="list-decimal list-inside space-y-1 text-gray-700 font-arabic">
-                <li>قسم تحفيظ القرآن الكريم.</li>
-                <li>قسم مراجعة القرآن الكريم.</li>
-                <li>قسم تصحيح التلاوة.</li>
-                <li>قسم الإجازات القرآنية.</li>
-              </ol>
+        <section id="main" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-green-800 mb-8 text-center">صـفحــتـنا</h2>
+                <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                    جمعية شبابنا هي جمعية علمية ثقافية، اعتمدت سنة 2013م تحت رقم 2013/40م من بلدية سطيف و بمعية مديرية الثقافة لولاية سطيف. شهدت الجمعية تغيرا في القانون الأساسي بتاريخ 2016/07/06م و تغييرا ثان في مهام أعضاء المكتب التنفيذي مرتين الأول بتاريخ 2018/12/29م و الثاني بتاريخ 2019/07/17م. كل هذا من أجل السير الحسن للجمعية. لها أهداف هي:
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-8 pr-6">
+                    <li>تربية الجيل على العلم و الأخلاق و الوطنية.</li>
+                    <li>فتح آفاق جديدة أمام الشباب على حقائق العلم و المعرفة و الثقافة.</li>
+                    <li>إحياء المناسبات الدينية و الوطنية.</li>
+                    <li>ترسيخ حب الوطن في الناشئة.</li>
+                    <li>إقامة نشاطات ترفيهية تعليمية تربوية ثقافية.</li>
+                    <li>إقامة ملتقيات فكرية ثقافية، أدبية، تاريخية.</li>
+                    <li>توعية الشباب حول مخاطر الآفات الاجتماعية.</li>
+                    <li>تنظيم رحلات استكشافية سياحية.</li>
+                    <li>إنتاج عروض مسرحية.</li>
+                    <li>فتح ناد لتعليم اللغة العربية و اللغات الحية.</li>
+                    <li>الاهتمام بالمجال السمعي البصري.</li>
+                    <li>تنظيم حفلات فنية إنشادية.</li>
+                </ol>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    يسهر على هذه الأهداف لجان سخروا أوقاتهم و جهودهم لتحقيقها و هي كما جاءت في المادة 23 من القانون الأساسي للجمعية.
+                </p>
             </div>
+        </section>
 
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold text-green-600 mb-2 font-arabic">خلية اللغة العربية و اللغات الحية:</h3>
-              <ol class="list-decimal list-inside space-y-1 text-gray-700 font-arabic">
-                <li>قسم اللغة العربية.</li>
-                <li>قسم اللغة الفرنسية.</li>
-                <li>قسم اللغة الانجليزية.</li>
-              </ol>
+        <section id="library" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-green-800 mb-6 text-center">مكــتبـتـنـا</h2>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    جمعيتنا مهتمة بجمع الكتب، و كلما ساهم الناس بالتبرع بالكتب كلما كبرت مكتبتنا، و الكتب التي نمتلكها من مختلف التخصصات. يمكنكم أن تتبرعوا بأية كتب أو استلامها خلال شهر، و أن يترك المستلم رقم هاتفه. للمزيد من المعلومات حول مكتبتنا اضغطوا الزر الذي في الأسفل.
+                </p>
+                <div class="text-center">
+                    <a href="/مكتبتنا" class="inline-block bg-green-600 text-white font-bold py-3 px-6 rounded hover:bg-green-700 transition duration-300">كتــبـنــا</a>
+                </div>
             </div>
+        </section>
 
-            <p class="text-lg text-gray-700 mb-4 font-arabic">خلية تعليم الإعلام الآلي.</p>
+        <section id="committies" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-green-800 mb-6 text-center">لــجـانـنـا</h2>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    تساعد الجمعية العامة لجان دائمة، مكلفة بدراسة المسائل المتعلقة بأهداف الجمعية. اللجان الدائمة هي ثلاثة:
+                </p>
 
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold text-green-600 mb-2 font-arabic">خلية المسرح و الفنون التشكيلية و التربية المدنية:</h3>
-              <ol class="list-decimal list-inside space-y-1 text-gray-700 font-arabic">
-                <li>قسم المسرح.</li>
-                <li>قسم الرسم و الفنون التشكيلية.</li>
-                <li>قسم التربية المدنية.</li>
-              </ol>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-green-700 mb-4">لجنة التربية و التعليم و هي تضم:</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-green-600 mb-2">خلية التعليم القرآني و فيها أربع أقسام:</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 pr-6">
+                                <li>قسم تحفيظ القرآن الكريم.</li>
+                                <li>قسم مراجعة القرآن الكريم.</li>
+                                <li>قسم تصحيح التلاوة.</li>
+                                <li>قسم الإجازات القرآنية.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-green-600 mb-2">خلية اللغة العربية و اللغات الحية:</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 pr-6">
+                                <li>قسم اللغة العربية.</li>
+                                <li>قسم اللغة الفرنسية.</li>
+                                <li>قسم اللغة الانجليزية.</li>
+                            </ul>
+                        </div>
+
+                        <p class="text-lg text-gray-700 mb-4">خلية تعليم الإعلام الآلي.</p>
+
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-green-600 mb-2">خلية المسرح و الفنون التشكيلية و التربية المدنية:</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 pr-6">
+                                <li>قسم المسرح.</li>
+                                <li>قسم الرسم و الفنون التشكيلية.</li>
+                                <li>قسم التربية المدنية.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-green-600 mb-2">خلية الاستشارات النفسية:</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 pr-6">
+                                <li>قسم الاستشارات النفسية.</li>
+                                <li>قسم الأرطفوني.</li>
+                                <li>قسم الاستشارات الأسرية و تربية الأطفال.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-green-600 mb-2">خلية المسرح و الفنون التشكيلية و التربية المدنية:</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 pr-6">
+                                <li>قسم الإرشاد الديني.</li>
+                                <li>قسم الاستشارات القانونية.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-semibold text-green-700">لجنة الإعلام و الاتصال</p>
+                    <p class="text-2xl font-semibold text-green-700">لجنة التجهيز و الصيانة و الوسائل</p>
+                </div>
             </div>
+        </section>
 
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold text-green-600 mb-2 font-arabic">خلية الاستشارات النفسية:</h3>
-              <ol class="list-decimal list-inside space-y-1 text-gray-700 font-arabic">
-                <li>قسم الاستشارات النفسية.</li>
-                <li>قسم الأرطفوني.</li>
-                <li>قسم الاستشارات الأسرية و تربية الأطفال.</li>
-              </ol>
+        <section id="activities" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-green-800 mb-6 text-center">نـشــاطــاتــنـا</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/MG_2262.png" alt="نشاطات دائمة" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات دائمة</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>التعليم القرآني</li>
+                                <li>أحكام الترتيل</li>
+                                <li>القسم التحضيري</li>
+                                <li>محو الأمية</li>
+                                <li>المكتبة</li>
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/184954225_2290659561067963_6053501625868536699_n.jpg" alt="نشاطات دائمة أخرى" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات دائمة أخرى</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>قفة شهرية</li>
+                                <li>تغسيل الموتى و تجهيزهم</li>
+                                <li>الجنائز</li>
+                                <li>الأفراح و الأعراس</li>
+                                <li>تجهيزات و وسائل (طاولات، كراسي، صحون...)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/280550530_2607785796022003_3738530076327582304_n.jpg" alt="نشاطات دائمة إضافية" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات دائمة إضافية</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>سيارة إسعاف</li>
+                                <li>توزيع الماء يوميا</li>
+                                <li>تقديم وجبتي الغداء و العشاء بالمستشفى</li>
+                                <li>إمداد المعدات: كراسي، أسرة، قارورات أوكسجين، مولدات أوكسجين</li>
+                                <li>ورشة للرسم و الفنون التشكيلية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/_MG_2976.png" alt="نشاطات موسمية" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات موسمية</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>دورات في تحفيظ القرآن</li>
+                                <li>دورات في تحفيظ الأربعين النووية</li>
+                                <li>دورات في أحكام الترتيل</li>
+                                <li>تكوين الحجاج</li>
+                                <li>مخيمات صيفية</li>
+                                <li>إحياء المناسبات الدينية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/received_2247674025457714.jpeg" alt="نشاطات موسمية أخرى" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات موسمية أخرى</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>مركز الإفطار</li>
+                                <li>قفة شهر رمضان</li>
+                                <li>كسوة العيد</li>
+                                <li>كبش العيد</li>
+                                <li>تجهيز العرائس</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="/img/279383055_2593709427429640_5527744589639820437_n.jpg" alt="نشاطات موسمية إضافية" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-green-700 mb-4">نشاطات موسمية إضافية</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>تقديم وجبات ساخنة محمولة طيلة شهر رمضان</li>
+                                <li>تجهيز المستشفى</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold text-green-600 mb-2 font-arabic">خلية المسرح و الفنون التشكيلية و التربية المدنية:</h3>
-              <ol class="list-decimal list-inside space-y-1 text-gray-700 font-arabic">
-                <li>قسم الإرشاد الديني.</li>
-                <li>قسم الاستشارات القانونية.</li>
-              </ol>
+        <section id="achievements" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-green-800 mb-6 text-center">إنجازاتنا</h2>
+                <!-- Add content for achievements here -->
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    نحن فخورون بإنجازاتنا المتعددة في خدمة المجتمع. سنقوم بتحديث هذا القسم قريبًا لعرض أبرز إنجازاتنا وتأثيرنا على المجتمع.
+                </p>
             </div>
-          </div>
-          <p class="text-xl font-semibold text-green-700 font-arabic">لجنة الإعلام و الاتصال</p>
-          <p class="text-xl font-semibold text-green-700 font-arabic">لجنة التجهيز و الصيانة و الوسائل</p>
+        </section>
+    </main>
+
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">جمعية شبابنا العلمية الثقافية</h3>
+                    <p>نعمل معًا لبناء مجتمع أفضل من خلال العلم والثقافة.</p>
+                </div>
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">روابط سريعة</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#main" class="hover:text-green-300">الرئيسية</a></li>
+                        <li><a href="#library" class="hover:text-green-300">المكتبة</a></li>
+                        <li><a href="#committees" class="hover:text-green-300">اللجان</a></li>
+                        <li><a href="#activities" class="hover:text-green-300">النشاطات</a></li>
+                        <li><a href="#achievements" class="hover:text-green-300">الإنجازات</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-4">تواصل معنا</h3>
+                    <p>العنوان: سطيف، الجزائر</p>
+                    <p>البريد الإلكتروني: info@shababuna.org</p>
+                    <p>الهاتف: +213 XX XX XX XX</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>&copy; 2024 جمعية شبابنا العلمية الثقافية. جميع الحقوق محفوظة.</p>
+            </div>
         </div>
-      </section>
-    </div>
+    </footer>
 
-    <section id="activities" class="max-w-6xl mx-auto mt-[4rem]">
-      <h1 class="text-3xl font-bold text-green-800 mb-6 font-arabic">نـشــاطــاتــنـا</h1>
-      <div id="cards">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/MG_2262.png">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>دائمة</h1>
-                  <li>التعليم القرآني</li>
-                  <li>أحكام الترتيل</li>
-                  <li>القسم التحضيري</li>
-                  <li>محو الأمية</li>
-                  <li>المكتبة</li>
-                </div>    
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/184954225_2290659561067963_6053501625868536699_n.jpg">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>دائمة</h1>
-                  <li>قفة شهرية</li>
-                  <li>تغسيل الموتى و تجهيزهم</li>
-                  <li>الجنائز</li>
-                  <li>الأفراح و الأعراس</li>
-                  <li>تجهيزات و وسائل (طاولات، كراسي، صحون...)</li>
-                </div>    
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/280550530_2607785796022003_3738530076327582304_n.jpg">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>دائمة</h1>
-                  <li>سيارة إسعاف</li>
-                  <li>توزيع الماء يوميا</li>
-                  <li>تقديم وجبتي الغداء و العشاء بالمستشفى</li>
-                  <li>إمداد المعدات: كراسي، أسرة، قارورات أوكسجين، مولدات أوكسجين</li>
-                  <li>ورشة للرسم و الفنون التشكيلية</li>
-                </div>    
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/_MG_2976.png">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>موسمية</h1>
-                  <li>دورات في تحفيظ القرآن</li>
-                  <li>دورات في تحفيظ الأربعين النووية</li>
-                  <li>دورات في أحكام الترتيل</li>
-                  <li>تكوين الحجاج</li>
-                  <li>مخيمات صيفية</li>
-                  <li>إحياء المناسبات الدينية</li>
-                </div>    
-              </div>  
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/received_2247674025457714.jpeg">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>موسمية</h1>
-                  <li>مركز الإفطار</li>
-                  <li>قفة شهر رمضان</li>
-                  <li>كسوة العيد</li>
-                  <li>كبش العيد</li>
-                  <li>تجهيز العرائس</li>
-                </div>    
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="card-image">
-              <img src="/img/279383055_2593709427429640_5527744589639820437_n.jpg">
-            </div>
-            <div class="card-info-wrapper">
-              <div class="card-info">
-                <div class="card-info-title">
-                  <h1>موسمية</h1>
-                  <li>تقديم وجبات ساخنة محمولة طيلة شهر رمضان</li>
-                  <li>تجهيز المستشفى</li>
-                </div>    
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        }
 
-    <section class="mt-[4rem]" id="achievements">
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
 
-    </section>
-  </main>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('header');
+        var scrollThreshold = 100;
+      
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      });
+    </script>
+</body>
+</html>
 
 
     <!-- <div class="content">
