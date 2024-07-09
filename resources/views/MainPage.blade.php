@@ -315,9 +315,9 @@
                 </div>
                 <div class="w-full md:w-1/3">
                     <h3 class="text-xl font-bold mb-4">تواصل معنا</h3>
-                    <p>العنوان: سطيف، الجزائر</p>
-                    <p>البريد الإلكتروني: info@shababuna.org</p>
-                    <p>الهاتف: +213 XX XX XX XX</p>
+                    <p>العنوان: 09 شارع مسعود بحري، لعرارسة، سطيف، الجزائر</p>
+                    <p>البريد الإلكتروني: chababouna.help@gmail.com</p>
+                    <p>الهاتف: 03 97 77 770 213+ / 77 72 75 770 213+</p>
                 </div>
             </div>
             <div class="mt-8 text-center">
