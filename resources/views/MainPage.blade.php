@@ -46,15 +46,45 @@
           @endguest
       </div>
       <div class="menu-icon" onclick="toggleMenu()">☰</div>
-      <nav id="navbar">
-          <a id="section" onclick="change()" href="#main" class="nav-btn">صفحتنا</a>
-          <a id="section" onclick="change()" href="#library" class="nav-btn">مكتبتنا</a>
-          <a id="section" onclick="change()" href="#committies" class="nav-btn">لجاننا</a>
-          <a id="section" onclick="change()" href="#activities" class="nav-btn">نشاطاتنا</a>
-          <a id="section" onclick="change()" href="#achievements" class="nav-btn">إنجازاتنا</a>
-      </nav>
+        <nav id="navbar">
+            <a id="section" onclick="change()" href="#main" class="nav-btn">صفحتنا</a>
+            <a id="section" onclick="change()" href="#library" class="nav-btn">مكتبتنا</a>
+            <a id="section" onclick="change()" href="#committies" class="nav-btn">لجاننا</a>
+            <a id="section" onclick="change()" href="#activities" class="nav-btn">نشاطاتنا</a>
+            <a id="section" onclick="change()" href="#achievements" class="nav-btn">إنجازاتنا</a>
+            <hr>
+            <div class="sign_action">
+              @guest
+                  @if (Route::has('register'))
+                      <a href="{{route('register')}}">سجل</a>
+                  @endif
+                  <br>
+                  <br>
+                  @if (Route::has('login'))
+                      <a href="{{route('login')}}">أدخل</a>
+                  @endif
+              @else
+                  <div class="dropdown">
+                    <a href="حسابي">حسابي</a>
+                    <br><br>
+                    <a href="الخيارات">صفحة التسجيلات</a>
+                    <br><br>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                        {{ __('أخرج') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                  </div>
+              @endguest
+            </div>
+        </nav>
       <div class="logo">
+        <a href="/">
           <img src="/img/IMG_20220701_112957-removebg-preview.png" alt="Logo">
+        </a>
       </div>
   </header>
 
@@ -137,7 +167,7 @@
                             </ul>
                         </div>
 
-                        <p class="text-lg text-gray-700 mb-4">خلية تعليم الإعلام الآلي.</p>
+                        <h4 class="text-xl font-semibold text-green-600 mb-2">خلية تعليم الإعلام الآلي.</h4>
 
                         <div class="mb-6">
                             <h4 class="text-xl font-semibold text-green-600 mb-2">خلية المسرح و الفنون التشكيلية و التربية المدنية:</h4>
