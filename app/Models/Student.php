@@ -12,9 +12,3 @@ class Student extends Model
         'name', 'surname', 'sex', 'job', 'DadJob', 'MomJob', 'day', 'month', 'year', 'place', 'residence', 'photo', 'email', 'scholar_year', 'tel'
     ];
 }
-
-class ABC extends Model {
-
-    const UPDATED_AT = null;
-
-}

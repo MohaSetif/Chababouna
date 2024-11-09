@@ -26,10 +26,10 @@ class QrCheckUserController extends Controller
     
     public function checkUser(Request $request) {
         $requestData = $request->input('data');
-        \Log::info($requestData);
+        
         $data = json_decode($requestData, true);
         $student = json_decode($data, true);  // Use the true parameter to decode as an associative array
-        \Log::info($student);
+        
         if (isset($student['id']) && isset($student['email'])) {
             $id = $student['id'];
             $email = $student['email'];

@@ -6,6 +6,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Bookstore;
 use App\Http\Controllers\BookCont;
 use App\Http\Controllers\ChababounaUserCont;
+use App\Http\Controllers\QrCheckUserController;
 use App\http\Controllers\PendingStatus;
 use App\Http\Controllers\ProfileCtrl;
 use Illuminate\Support\Facades\Auth;
@@ -41,9 +42,9 @@ Route::group(['middleware' => 'auth'], function (){
         return redirect('الصفحة-الرئيسية');
     });
 
-    Route::group(['prefix' => 'ChababounaAdmin'], function () {
-        Voyager::routes();
-    });
+    // Route::group(['prefix' => 'ChababounaAdmin'], function () {
+    //     Voyager::routes();
+    // });
     
     
     Route::get('حسابي', [ProfileCtrl::class, 'index']);
@@ -89,9 +90,9 @@ Route::group(['middleware' => 'auth'], function (){
 
     //===================== QR CODE SCANNER =====================
 
-    Route::get('/check_user', ['uses' => 'App\Http\Controllers\QrCheckUserController@index']);
-    Route::post('/check_user', ['uses' => 'App\Http\Controllers\QrCheckUserController@checkUser']);
-    Route::get('/generate_code', 'App\Http\Controllers\QrCheckUserController@generate')->name('generate_code');
+    Route::get('/check_user', [QRCheckUserController::class, 'index']);
+    Route::post('/check_user', [QRCheckUserController::class, 'checkUser']);
+    Route::get('/generate_code', [QRCheckUserController::class, 'generate'])->name('generate_code');
 
     Route::view('/check_user_code', 'check_user_code');
 });
