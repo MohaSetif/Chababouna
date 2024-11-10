@@ -70,15 +70,8 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'name' => $input['name'],
-            'surname' => $input['surname'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-        ]);
-
-        Session::push('user',[
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => $input['password'],
         ]);
 
         return $user;

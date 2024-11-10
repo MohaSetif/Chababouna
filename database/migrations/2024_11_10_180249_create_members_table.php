@@ -13,23 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('members', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->string('surname');
             $table->enum('sex', ['male', 'female']);
-            $table->string('job');
-            $table->date('birthdate');
-            $table->string('dad_job');
-            $table->string('mom_job');
-            $table->string('place');
-            $table->string('residence');
-            $table->string('photo');
-            $table->string('email');
-            $table->string('scholar_year');
-            $table->string('tel');
-            $table->string('study_local');
-            $table->string('dad_el');
+            $table->string('job')->required();
+            $table->date('birthdate')->required();
+            $table->string('place')->required();
+            $table->string('residence')->required();
+            $table->string('hobby')->required();
+            $table->string('help')->required();
+            $table->string('email')->required();
+            $table->string('photo')->required();
+            $table->string('tel')->required();
             $table->string('status')->default('pending');
             $table->timestamps();
         });
@@ -42,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('members');
     }
 };

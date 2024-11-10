@@ -23,7 +23,7 @@
     <title>التعليم القرآني</title>
 </head>
 <body>
-<form action="التسجيل" method="POST" enctype="multipart/form-data">
+<form action="/student_register" method="POST" enctype="multipart/form-data">
     @csrf
     <section>
     <div class="ImgBox">
@@ -58,13 +58,13 @@
                     @enderror
                     
                     <span>:مهنة الولي</span>
-                    <input type="text" name="DadJob" value="{{old('DadJob')}}">
+                    <input type="text" name="DadJob" value="{{old('dad_job')}}">
                 </div>
                 <div class="InputBox">
                     <span>:مهنة الأم</span>
-                    <input type="text" name="MomJob" value="{{old('MomJob')}}">
-                    <span>:ذكر</span><input type="radio" name="sex" value="ذكر">
-                    <span>:أنثى</span><input type="radio" name="sex" value="أنثى">
+                    <input type="text" name="MomJob" value="{{old('mom_job')}}">
+                    <span>:ذكر</span><input type="radio" name="sex" value="male">
+                    <span>:أنثى</span><input type="radio" name="sex" value="female">
                     @error('sex')
                         <div class="error">
                             <?php echo 'نسيت أن تضع جنسك'; ?>
@@ -80,61 +80,14 @@
             </div>
 
                 <div class="InputBox">
-                    <span>:تاريخ الميلاد</span>
-                    <select name="day" id="day">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
-                        <option>26</option>
-                        <option>27</option>
-                        <option>28</option>
-                        <option>29</option>
-                        <option>30</option>
-                        <option>31</option>
-                    </select>
-                    <select name="month" id="month">
-                        <option>جانفي</option>
-                        <option>فيفري</option>
-                        <option>مارس</option>
-                        <option>أفريل</option>
-                        <option>ماي</option>
-                        <option>جوان</option>
-                        <option>جويلية</option>
-                        <option>أوت</option>
-                        <option>سبتمبر</option>
-                        <option>أكتوبر</option>
-                        <option>نوفمبر</option>
-                        <option>ديسمبر</option>
-                    </select>
-                    <div class="YearBox">
-                        <input type="number" name="year" value="{{old('year')}}" id="year">
-                        @error('year')
-                        <div class="error">
-                            <?php echo 'نسيت ملء سنة الميلاد'; ?>
-                        </div>
-                    @enderror
+                    <div class="InputBox">
+                        <span>:تاريخ الميلاد</span>
+                        <input type="date" name="birthdate" value="{{ old('birthdate') }}">
+                        @error('birthdate')
+                            <div class="error">
+                                <?php echo 'نسيت ملء تاريخ الميلاد'; ?>
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="InputBox">
@@ -165,7 +118,7 @@
                         <option>خيار آخر</option>
                    </select>
                    <span>:المقر</span>
-                   <select name="local">
+                   <select name="study_local">
                         <option>-البشير الإبراهيمي -لعرارسة</option>
                         <option>-عائشة أم المؤمنين -ديرو</option>
                    </select>
@@ -180,6 +133,7 @@
                         </div>
                     @enderror
                     <br><br>
+                    
                     <span>أدخل صورتك</span>
                     <input type="file" name="photo" id="photo" class="custom-file-input">
                     @error('photo')

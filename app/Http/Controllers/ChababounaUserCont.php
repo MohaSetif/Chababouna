@@ -67,7 +67,7 @@ class ChababounaUserCont extends Controller
             $filePath = public_path('/uploads/utilisateurs');
             $image->move($filePath, $photoname);
             $input['photo'] = $photoname;
-            }
+        }
 
         Chababounauser::create($req->except(['status']));
 

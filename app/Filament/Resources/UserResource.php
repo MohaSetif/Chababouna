@@ -31,9 +31,6 @@ class UserResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('surname')
-                    ->required()
-                    ->maxLength(255),
                 Select::make('role_id')
                     ->options([
                         0 => 'User',
@@ -58,9 +55,6 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('surname')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
