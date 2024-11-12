@@ -13,7 +13,7 @@ class AddMemberRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -33,9 +33,10 @@ class AddMemberRequest extends FormRequest
             'help' => 'required|max:120',
             'place' => 'required|max:120',
             'residence' => 'required|max:120',
+            'email' => 'required|email',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'scholar_year' => 'required|max:120',
-            'tel' => 'required|regex:/(05)[0-9]{8}/',
+            'tel' => 'required|regex:/(0)[0-9]{9}$/',
         ];
     }
 }

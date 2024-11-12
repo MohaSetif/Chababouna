@@ -9,46 +9,42 @@ use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
-    public function add_member(AddMemberRequest $request){
-
-        $member = Member::query()->where([
+    public function add_member(Request $request)
+    {
+        $memberExists = Member::where([
             'name' => $request->name,
             'surname' => $request->surname,
             'birthdate' => $request->birthdate,
-            'email' => $request->email
-          ])->first();
+            'email' => Auth::user()->email,
+        ])->exists();
 
-        if(!$member){
-            if(!empty($request->hasFile('photo'))){
-
-                $image = $request->file('photo');
-                $photoname = date('YmdHis').'.'.$image->extension();
-                $filePath = public_path('/uploads/members');
-                $image->move($filePath, $photoname);
-                $input['photo'] = $photoname;
-            }
-
-            Member::create([
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'sex' => $request->sex,
-                'birthdate' => $request->birthdate,
-                'job' => $request->job,
-                'hobby' => $request->hobby,
-                'help' => $request->help,
-                'place' => $request->place,
-                'residence' => $request->residence,
-                'email' => Auth::user()->email,
-                'photo' => $request->photo,
-                'scholar_year' => $request->scholar_year,
-                'tel' => $request->tel,
-            ]);
-
-            return redirect('إرسال-الاستمارة');
-        }else{
-            echo "<script>";
-            echo "alert('أنت مسجل(ة) من قبل');";
-            echo "</script>";
+        if ($memberExists) {
+            return redirect()->back()->with('error', 'أنت مسجل(ة) من قبل');
         }
+
+        $photoname = null;
+        if(!empty($request->hasFile('photo'))){
+            $image = $request->file('photo');
+            $photoname = date('YmdHis').'.'.$image->extension();
+            $image->storeAs('members', $photoname, 'public');
+        }
+
+        Member::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'sex' => $request->sex,
+            'birthdate' => $request->birthdate,
+            'job' => $request->job,
+            'hobby' => $request->hobby,
+            'help' => $request->help,
+            'place' => $request->place,
+            'residence' => $request->residence,
+            'email' => Auth::user()->email,
+            'photo' => $photoname,
+            'scholar_year' => $request->scholar_year,
+            'tel' => $request->tel,
+        ]);
+
+        return redirect('إرسال-الاستمارة')->with('success', 'تم التسجيل بنجاح');
     }
 }

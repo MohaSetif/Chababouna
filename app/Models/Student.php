@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Student extends Model
 {
@@ -26,4 +27,9 @@ class Student extends Model
         'study_local',
         'status'
     ];
+
+    public function getPhotoUrlAttribute()
+    {
+        return $this->photo ? Storage::url($this->photo) : null;
+    }
 }

@@ -15,21 +15,21 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('surname');
-            $table->enum('sex', ['male', 'female']);
-            $table->string('job');
-            $table->date('birthdate');
-            $table->string('dad_job');
-            $table->string('mom_job');
-            $table->string('place');
-            $table->string('residence');
-            $table->string('photo');
-            $table->string('email');
-            $table->string('scholar_year');
-            $table->string('tel');
-            $table->string('study_local');
-            $table->string('dad_el');
+            $table->string('name')->required();
+            $table->string('surname')->required();
+            $table->enum('sex', ['ذكر', 'أنثى']);
+            $table->string('job')->nullable();
+            $table->date('birthdate')->required();
+            $table->string('dad_job')->nullable();
+            $table->string('mom_job')->nullable();
+            $table->string('place')->required();
+            $table->string('residence')->required();
+            $table->string('photo')->required();
+            $table->string('email')->required();
+            $table->string('scholar_year')->required();
+            $table->string('tel')->required();
+            $table->string('study_local')->nullable();
+            $table->string('dad_tel')->required();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

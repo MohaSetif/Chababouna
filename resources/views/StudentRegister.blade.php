@@ -58,11 +58,11 @@
                     @enderror
                     
                     <span>:مهنة الولي</span>
-                    <input type="text" name="DadJob" value="{{old('dad_job')}}">
+                    <input type="text" name="dad_job" value="{{old('dad_job')}}">
                 </div>
                 <div class="InputBox">
                     <span>:مهنة الأم</span>
-                    <input type="text" name="MomJob" value="{{old('mom_job')}}">
+                    <input type="text" name="mom_job" value="{{old('mom_job')}}">
                     <span>:ذكر</span><input type="radio" name="sex" value="male">
                     <span>:أنثى</span><input type="radio" name="sex" value="female">
                     @error('sex')
@@ -130,6 +130,14 @@
                     @error('tel')
                         <div class="error">
                             <?php echo 'نسيت ملء رقم الهاتف أو هو خاطئ'; ?>
+                        </div>
+                    @enderror
+
+                    <span>:رقم هاتف الولي</span>
+                    <input type="text" name="dad_tel" value="{{old('dad_tel')}}">
+                    @error('dad_tel')
+                        <div class="error">
+                            <?php echo 'نسيت ملء رقم هاتف الولي أو هو خاطئ'; ?>
                         </div>
                     @enderror
                     <br><br>

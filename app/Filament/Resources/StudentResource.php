@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Models\Student;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class StudentResource extends Resource
 {
@@ -37,7 +39,15 @@ class StudentResource extends Resource
                                 FileUpload::make('photo')
                                     ->image()
                                     ->directory('students')
-                                    ->required(),
+                                    ->visibility('public')
+                                    ->preserveFilenames()
+                                    ->required()
+                                    ->acceptedFileTypes(['image/png', 'image/jpg', 'image/jpeg'])
+                                    ->getUploadedFileNameForStorageUsing(
+                                        fn (TemporaryUploadedFile $file): string => (string) str(
+                                            $file->getClientOriginalName()
+                                        )->prepend('student_'),
+                                    ),
 
                                 Grid::make(2)
                                     ->schema([
@@ -67,11 +77,11 @@ class StudentResource extends Resource
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextInput::make('DadJob')
+                                TextInput::make('dad_job')
                                     ->label("Father's Job")
                                     ->maxLength(255),
 
-                                TextInput::make('MomJob')
+                                TextInput::make('mom_job')
                                     ->label("Mother's Job")
                                     ->maxLength(255),
                             ]),
@@ -81,23 +91,12 @@ class StudentResource extends Resource
                     ->schema([
                         Grid::make(3)
                             ->schema([
-                                TextInput::make('day')
-                                    ->numeric()
-                                    ->required()
-                                    ->minValue(1)
-                                    ->maxValue(31),
-
-                                TextInput::make('month')
-                                    ->numeric()
-                                    ->required()
-                                    ->minValue(1)
-                                    ->maxValue(12),
-
-                                TextInput::make('year')
-                                    ->numeric()
-                                    ->required()
-                                    ->minValue(1950)
-                                    ->maxValue(date('Y')),
+                                DatePicker::make('birthdate')
+                                    ->format('Y-m-d')
+                                    ->displayFormat('d/m/Y')
+                                    ->seconds(false)
+                                    ->label("Student's Birthdate")
+                                    ->required(),
 
                                 TextInput::make('place')
                                     ->required()
@@ -111,18 +110,28 @@ class StudentResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 TextInput::make('residence')
+                                    ->label("Address")
                                     ->required()
                                     ->maxLength(255),
 
-                                TextInput::make('local')
+                                TextInput::make('study_local')
+                                    ->label("Study Local")
                                     ->maxLength(255),
 
                                 TextInput::make('email')
+                                    ->label("Email")
                                     ->email()
                                     ->required()
                                     ->maxLength(255),
 
+                                TextInput::make('dad_tel')
+                                    ->label("Parent's Phone number")
+                                    ->tel()
+                                    ->required()
+                                    ->maxLength(255),
+
                                 TextInput::make('tel')
+                                    ->label("Phone number")
                                     ->tel()
                                     ->required()
                                     ->maxLength(255),
@@ -133,14 +142,6 @@ class StudentResource extends Resource
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                Select::make('inscripted_in')
-                                    ->label('Enrolled In')
-                                    ->options([
-                                        'التعليم-القرآني' => 'التعليم القرآني',
-                                        // Add other options as needed
-                                    ])
-                                    ->required(),
-
                                 TextInput::make('scholar_year')
                                     ->required()
                                     ->maxLength(255),
@@ -176,11 +177,6 @@ class StudentResource extends Resource
                 TextColumn::make('tel')
                     ->searchable(),
 
-                TextColumn::make('inscripted_in')
-                    ->label('Enrolled In')
-                    ->searchable()
-                    ->sortable(),
-
                 TextColumn::make('scholar_year')
                     ->label('Academic Year')
                     ->searchable()
@@ -196,12 +192,6 @@ class StudentResource extends Resource
                     ->options([
                         'ذكر' => 'ذكر',
                         'أنثى' => 'أنثى',
-                    ]),
-                Tables\Filters\SelectFilter::make('inscripted_in')
-                    ->label('Enrolled In')
-                    ->options([
-                        'التعليم-القرآني' => 'التعليم القرآني',
-                        // Add other options as needed
                     ]),
                 Tables\Filters\Filter::make('created_at')
                     ->form([
