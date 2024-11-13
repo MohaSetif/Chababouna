@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->required();
             $table->string('surname')->required();
-            $table->enum('sex', ['ذكر', 'أنثى']);
+            $table->enum('sex', ['male', 'female']);
             $table->string('job')->nullable();
             $table->date('birthdate')->required();
             $table->string('dad_job')->nullable();

@@ -15,6 +15,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class BookResource extends Resource
 {
@@ -31,7 +32,15 @@ class BookResource extends Resource
                 FileUpload::make('photo')
                     ->image()
                     ->directory('books')
-                    ->required(),
+                    ->visibility('public')
+                    ->preserveFilenames()
+                    ->required()
+                    ->acceptedFileTypes(['image/png', 'image/jpg', 'image/jpeg'])
+                    ->getUploadedFileNameForStorageUsing(
+                        fn (TemporaryUploadedFile $file): string => (string) str(
+                            $file->getClientOriginalName()
+                        )->prepend('book_'),
+                    ),
                 
                 TextInput::make('title')
                     ->required()
@@ -111,15 +120,6 @@ class BookResource extends Resource
 
                 TextColumn::make('parts')
                     ->sortable(),
-
-                TextColumn::make('publication')
-                    ->label('Publisher')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                TextColumn::make('insert_date')
-                    ->date()
-                    ->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('field')
@@ -134,13 +134,7 @@ class BookResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
-            ->defaultSort('insert_date', 'desc');
+            ]);
     }
 
     public static function getRelations(): array

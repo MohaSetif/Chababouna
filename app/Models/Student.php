@@ -27,9 +27,4 @@ class Student extends Model
         'study_local',
         'status'
     ];
-
-    public function getPhotoUrlAttribute()
-    {
-        return $this->photo ? Storage::url($this->photo) : null;
-    }
 }

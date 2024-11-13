@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
+            $table->timestamps();
             $table->string('photo');
             $table->string('copies');
             $table->string('note');
@@ -24,7 +25,6 @@ return new class extends Migration
             $table->string('writer_name');
             $table->string('title');
             $table->string('field');
-            $table->string('insert_date');
             $table->increments('id');
         });
     }

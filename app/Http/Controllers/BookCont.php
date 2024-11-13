@@ -41,15 +41,13 @@ class BookCont extends Controller
 
         $input = $request->all();
 
-        if(!empty($request->hasFile('photo'))){
-
+        $photoname = null;
+        if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $photoname = date('YmdHis').'.'.$image->getClientOriginalExtension();
-            $filePath = public_path('/uploads/books/');
-            $image->move($filePath, $photoname);
-            $input['photo'] = $photoname;
-            
-            }
+            $photoname = date('YmdHis').'.'.$image->extension();
+            $image->storeAs('books', $photoname, 'public');
+            $input['image'] = $photoname;
+        }
 
         // $name = $request->file('photo')->getClientOriginalName();
  
@@ -101,16 +99,12 @@ class BookCont extends Controller
     public function update(Request $request, Book $book)
     {
          $input = $request->all();
-       
-        if(!empty($request->hasFile('photo'))){
+
+         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $photoname = date('YmdHis').'.'.$image->getClientOriginalExtension();
-            $filePath = public_path('/uploads/books/');
-            $image->move($filePath, $photoname);
+            $photoname = date('YmdHis').'.'.$image->extension();
+            $image->storeAs('books', $photoname, 'public');
             $input['photo'] = $photoname;
-            
-            }else{
-            unset($input['image']);
         }
           
         $book->update($input);

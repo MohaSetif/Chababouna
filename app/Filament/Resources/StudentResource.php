@@ -62,8 +62,8 @@ class StudentResource extends Resource
                                         Select::make('sex')
                                             ->required()
                                             ->options([
-                                                'ذكر' => 'ذكر',
-                                                'أنثى' => 'أنثى',
+                                                'male' => 'ذكر',
+                                                'female' => 'أنثى',
                                             ]),
 
                                         TextInput::make('job')
@@ -138,13 +138,22 @@ class StudentResource extends Resource
                             ]),
                     ]),
 
-                Section::make('Educational Information')
+                    Section::make('Educational Information')
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextInput::make('scholar_year')
+                                Select::make('scholar_year')
+                                    ->label('المستوى الدراسي')
+                                    ->options([
+                                        'التمهيدي' => 'التمهيدي',
+                                        'التحضيري' => 'التحضيري',
+                                        'الابتدائي' => 'الابتدائي',
+                                        'المتوسطي' => 'المتوسطي',
+                                        'الثانوي' => 'الثانوي',
+                                        'الجامعي' => 'الجامعي',
+                                        'خيار آخر' => 'خيار آخر',
+                                    ])
                                     ->required()
-                                    ->maxLength(255),
                             ]),
                     ]),
             ]);
@@ -182,33 +191,26 @@ class StudentResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('status')
+                    ->label('status')
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('sex')
                     ->options([
-                        'ذكر' => 'ذكر',
-                        'أنثى' => 'أنثى',
+                        'male' => 'ذكر',
+                        'female' => 'أنثى',
                     ]),
-                Tables\Filters\Filter::make('created_at')
-                    ->form([
-                        Forms\Components\DatePicker::make('created_from'),
-                        Forms\Components\DatePicker::make('created_until'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['created_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
-                            )
-                            ->when(
-                                $data['created_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
-                            );
-                    })
+
+                Tables\Filters\SelectFilter::make('scholar_year')
+                    ->options([
+                        'التمهيدي' => 'التمهيدي',
+                        'التحضيري' => 'التحضيري',
+                        'الابتدائي' => 'الابتدائي',
+                        'المتوسطي' => 'المتوسطي',
+                        'الثانوي' => 'الثانوي',
+                        'الجامعي' => 'الجامعي',
+                        'خيار آخر' => 'خيار آخر',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
