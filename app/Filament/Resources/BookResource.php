@@ -82,12 +82,12 @@ class BookResource extends Resource
 
                 Textarea::make('review')
                     ->rows(3)
-                    ->maxLength(65535)
+                    ->maxLength(255)
                     ->columnSpan(2),
 
                 Textarea::make('note')
                     ->rows(3)
-                    ->maxLength(65535)
+                    ->maxLength(255)
                     ->columnSpan(2),
             ])
             ->columns(2);
