@@ -63,9 +63,9 @@ Route::group(['middleware' => 'auth'], function (){
 
     //===================== QR CODE SCANNER =====================
 
-    Route::get('/check_user', [QRCheckUserController::class, 'index']);
-    Route::post('/check_user', [QRCheckUserController::class, 'checkUser']);
-    Route::get('/generate_code', [QRCheckUserController::class, 'generate'])->name('generate_code');
+    // Route::get('/check_user', [QRCheckUserController::class, 'index']);
+    // Route::post('/check_user', [QRCheckUserController::class, 'checkUser']);
+    // Route::get('/generate_code', [QRCheckUserController::class, 'generate'])->name('generate_code');
 
-    Route::view('/check_user_code', 'check_user_code');
+    // Route::view('/check_user_code', 'check_user_code');
 });

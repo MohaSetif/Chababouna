@@ -53,7 +53,7 @@
                         <td class="border px-4 py-2">{{ $item->note }}</td>
                         <td class="border px-4 py-2">{{ $item->copies }}</td>
                         <td class="border px-4 py-2">
-                            <img src="uploads/books/{{ $item->photo }}" alt="Book cover" class="w-16 h-auto object-cover">
+                            <img src="{{ asset('storage/' . $item->photo) }}" alt="Book cover" class="w-16 h-auto object-cover">
                         </td>
                     </tr>
                     @endforeach

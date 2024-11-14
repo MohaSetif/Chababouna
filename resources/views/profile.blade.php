@@ -1,61 +1,99 @@
+@php
+    $statusTranslations = [
+        'pending' => 'قيد الانتظار',
+        'approved' => 'موافق عليه',
+        'rejected' => 'مرفوض',
+    ];
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/Profile.css">
-    <title>حسابي الخاص</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>حسابي الخاص</title>
+  <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f6f9fc 0%, #e9f1f7 100%);
+        }
+  </style>
 </head>
-<body>
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5 mb-3" width="150px" src="/img/twitter-avi-gender-balanced-figure.png">{{ Auth::user()->name }}</span><span class="text-black-50">{{ Auth::user()->email }}</span><span> </span></div>
+<body class="bg-gray-100 m-2">
+  <div class="container mx-auto my-10 bg-white rounded-lg shadow-lg">
+    <!-- Profile Header -->
+    <div class="grid grid-cols-1 md:grid-cols-3 border-b border-gray-200">
+      <!-- Profile Sidebar -->
+      <div class="col-span-1 flex flex-col items-center py-6 border-r border-gray-200">
+        <img class="w-32 h-32 rounded-full mb-4" src="/img/twitter-avi-gender-balanced-figure.png" alt="User Avatar">
+        <h3 class="text-lg font-semibold">{{ Auth::user()->name }}</h3>
+        <p class="text-gray-500 text-xs md:text-md">{{ Auth::user()->email }}</p>
+      </div>
+      <!-- Profile Details -->
+      <div class="col-span-2 p-6 text-right">
+        <h2 class="text-2xl font-bold mb-4">حسابي الخاص</h2>
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="text-gray-500 font-medium block">الاسم</label>
+            <input type="text" class="mt-1 bg-gray-100 rounded-md text-right px-4 py-2 w-full" value="{{ Auth::user()->name }}" disabled>
+          </div>
         </div>
-        <div class="col">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">حسابي الخاص</h4>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels" style="float: right;">الاسم</label><input type="text" class="form-control" placeholder="first name" value="{{ Auth::user()->name }}" disabled></div>
-                    <div class="col-md-6"><label class="labels" style="float: right;">اللقب</label><input type="text" class="form-control" value="{{ Auth::user()->surname }}" placeholder="surname" disabled></div>
-                </div>
-                <br><br>
-                <div class="row mt-3">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right" style="margin-right:15px;">تسجيلاتي</h4>
-                </div>
-                <div class="container text-center">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">نوع التسجيل</th>
-                            <th scope="col">تاريخ التسجيل</th>
-                            <th scope="col">الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($registrations as $registration)
-                            <tr>
-                                <td style="color:gray;">{{ $registration->inscripted_in }}</td>
-                                <td style="color:gray;">{{ $registration->created_at }}</td>
-                                <td style="color:gray;">{{ $registration->status }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
+    <!-- Registration Sections -->
+    <div class="p-6 text-right">
+      <h2 class="text-2xl font-bold mb-4">تسجيلاتي</h2>
+      <div class="space-y-8">
+        <!-- Quran School Registrations -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-700 mb-2">التسجيل في التعليم القرآني</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full table-auto border border-gray-200">
+              <thead>
+                <tr class="bg-gray-200 text-gray-600 uppercase text-sm font-semibold">
+                  <th class="px-4 py-2 text-right">الحالة</th>
+                  <th class="px-4 py-2 text-right">تاريخ التسجيل</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($school_regs as $school_reg)
+                <tr class="border-b hover:bg-gray-50">
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $statusTranslations[$school_reg->status] }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $school_reg->created_at }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Membership Registrations -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-700 mb-2">التسجيل في العضوية</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full table-auto border border-gray-200">
+              <thead>
+                <tr class="bg-gray-200 text-gray-600 uppercase text-sm font-semibold">
+                  <th class="px-4 py-2 text-right">الحالة</th>
+                  <th class="px-4 py-2 text-right">تاريخ التسجيل</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($membership_regs as $membership_reg)
+                <tr class="border-b hover:bg-gray-50">
+                <td class="px-4 py-2 text-gray-500 text-right">{{ $statusTranslations[$membership_reg->status] }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $membership_reg->created_at }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

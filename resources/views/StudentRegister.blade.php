@@ -1,182 +1,183 @@
 <!DOCTYPE html>
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/LoginStyle.css">
-    <link rel="icon" type="image/x-icon" href="/img/android-chrome-512x512.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script>
-			$( function() { // jquery document ready function
-				$( '#first_jquery_checkbox' ).on( 'click', function() { // do things when the checkbox gets clicked
-					if ( this.checked ) { // check box is checked so disable input and select
-						$( '#first_jquery_input1' ).prop( 'disabled', 'disabled' );
-                        $( '#first_jquery_input2' ).prop( 'disabled', 'disabled' );
-					} else { // checkbox is not checked, make input and select editable
-						$( '#first_jquery_input1' ).prop( 'disabled', '' );
-                        $( '#first_jquery_input2' ).prop( 'disabled', '' );
-					}
-				} )	
-			} );
-		</script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
     <title>التعليم القرآني</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('#first_jquery_checkbox').on('click', function() {
+                if (this.checked) {
+                    $('#first_jquery_input1, #first_jquery_input2').prop('disabled', true);
+                } else {
+                    $('#first_jquery_input1, #first_jquery_input2').prop('disabled', false);
+                }
+            });
+        });
+    </script>
 </head>
-<body>
-<form action="/student_register" method="POST" enctype="multipart/form-data">
-    @csrf
-    <section>
-    <div class="ImgBox">
-        <img src="/img/10051f000001gsrxu99A6.jpg">
-    </div>
-    <div class="ContentBox">
-        <div class="FormBox">
-            <h2>التعليم القرآني</h2>
-                <div class="InputBox">
-                    <span>:الاسم</span>
-                    <input type="text" name="name" value="{{old('name')}}">
-                    @error('name')
-                        <div class="error">
-                            <?php echo 'نسيت ملء الاسم'; ?>
-                        </div>
-                    @enderror
-                    <span>:اللقب</span>
-                    <input type="text" name="surname" value="{{old('surname')}}">
-                    @error('surname')
-                        <div class="error">
-                            <?php echo 'نسيت ملء اللقب'; ?>
-                        </div>
-                    @enderror
-                </div>
-                <div class="InputBox">
-                    <span>:المهنة</span>
-                    <input type="text" name="job" value="{{old('job')}}" id="first_jquery_input1">
-                    @error('job')
-                        <div class="error">
-                            <?php echo 'نسيت أن تضع مهنتك'; ?>
-                        </div>
-                    @enderror
-                    
-                    <span>:مهنة الولي</span>
-                    <input type="text" name="dad_job" value="{{old('dad_job')}}">
-                </div>
-                <div class="InputBox">
-                    <span>:مهنة الأم</span>
-                    <input type="text" name="mom_job" value="{{old('mom_job')}}">
-                    <span>:ذكر</span><input type="radio" name="sex" value="male">
-                    <span>:أنثى</span><input type="radio" name="sex" value="female">
-                    @error('sex')
-                        <div class="error">
-                            <?php echo 'نسيت أن تضع جنسك'; ?>
-                        </div>
-                    @enderror
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Image Section -->
+        <div class="lg:w-1/2 lg:fixed lg:left-0 h-64 lg:h-screen">
+            <img src="/img/10051f000001gsrxu99A6.jpg" alt="التعليم القرآني" class="w-full h-full object-cover"/>
+        </div>
+
+        <!-- Form Section -->
+        <div class="lg:w-1/2 p-8 lg:min-h-screen bg-white">
+            <form action="/student_register" method="POST" enctype="multipart/form-data" class="max-w-2xl mx-auto space-y-6">
+                @csrf
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">التعليم القرآني</h1>
+                    <p class="text-gray-600">انضم إلى جمعيتنا اليوم</p>
                 </div>
 
-            <div class="InputBox">  
-                <div class="check">
-                    <span for="first_jquery_checkbox">(أقل من 18؟ (أكتب مهنة الأولياء و لا تكتب البريد الالكتروني</span>
-                    <input type="checkbox" id="first_jquery_checkbox" name="Over">
-                </div>
-            </div>
-
-                <div class="InputBox">
-                    <div class="InputBox">
-                        <span>:تاريخ الميلاد</span>
-                        <input type="date" name="birthdate" value="{{ old('birthdate') }}">
-                        @error('birthdate')
-                            <div class="error">
-                                <?php echo 'نسيت ملء تاريخ الميلاد'; ?>
-                            </div>
+                <!-- Name and Surname -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">الاسم:</label>
+                        <input type="text" name="name" value="{{ old('name') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('name')
+                            <p class="text-red-500 text-sm">نسيت ملء الاسم</p>
+                        @enderror
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">اللقب:</label>
+                        <input type="text" name="surname" value="{{ old('surname') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('surname')
+                            <p class="text-red-500 text-sm">نسيت ملء اللقب</p>
                         @enderror
                     </div>
                 </div>
-                <div class="InputBox">
-                    <span>:مكان الميلاد</span>
-                    <input type="text" name="place" value="{{old('place')}}">
-                    @error('place')
-                        <div class="error">
-                            <?php echo 'نسيت ملء مكان الميلاد'; ?>
-                        </div>
-                    @enderror
-                    <span>:العنوان</span>
-                    <input type="text" name="residence" value="{{old('residence')}}">
-                    @error('residence')
-                        <div class="error">
-                            <?php echo 'نسيت ملء مكان الإقامة'; ?>
-                        </div>
-                    @enderror
-                </div>
-                <div class="InputBox">
-                   <span>:المستوى الدراسي</span>
-                   <select name="scholar_year">
-                        <option>التمهيدي</option>
-                        <option>التحضيري</option>
-                        <option>الابتدائي</option>
-                        <option>المتوسطي</option>
-                        <option>الثانوي</option>
-                        <option>الجامعي</option>
-                        <option>خيار آخر</option>
-                   </select>
-                   <span>:المقر</span>
-                   <select name="study_local">
-                        <option>-البشير الإبراهيمي -لعرارسة</option>
-                        <option>-عائشة أم المؤمنين -ديرو</option>
-                   </select>
-                </div>
-            
-                <div class="InputBox">
-                    <span>:رقم الهاتف</span>
-                    <input type="text" name="tel" value="{{old('tel')}}">
-                    @error('tel')
-                        <div class="error">
-                            <?php echo 'نسيت ملء رقم الهاتف أو هو خاطئ'; ?>
-                        </div>
-                    @enderror
 
-                    <span>:رقم هاتف الولي</span>
-                    <input type="text" name="dad_tel" value="{{old('dad_tel')}}">
-                    @error('dad_tel')
-                        <div class="error">
-                            <?php echo 'نسيت ملء رقم هاتف الولي أو هو خاطئ'; ?>
-                        </div>
+                <!-- Job and Parent's Job -->
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">أقل من 18 سنة؟ فلا تكتب مهنتك إذن</label>
+                    <input type="checkbox" id="first_jquery_checkbox" name="Over" class="form-checkbox h-5 w-5 text-blue-600">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">المهنة:</label>
+                    <input type="text" name="job" id="first_jquery_input1" value="{{ old('job') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                    @error('job')
+                        <p class="text-red-500 text-sm">نسيت أن تضع مهنتك</p>
                     @enderror
-                    <br><br>
-                    
-                    <span>أدخل صورتك</span>
-                    <input type="file" name="photo" id="photo" class="custom-file-input">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Additional Information -->
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">مهنة الولي:</label>
+                        <input type="text" name="dad_job" value="{{ old('dad_job') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">مهنة الأم:</label>
+                        <input type="text" name="mom_job" value="{{ old('mom_job') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium mb-2">الجنس:</label>
+                    <div class="flex gap-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="sex" value="male" class="form-radio text-blue-600">
+                            <span class="mr-2">ذكر</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="sex" value="female" class="form-radio text-blue-600">
+                            <span class="mr-2">أنثى</span>
+                        </label>
+                    </div>
+                    @error('sex')
+                        <p class="text-red-500 text-sm">نسيت أن تضع جنسك</p>
+                    @enderror
+                </div>
+
+                <!-- Birth Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">تاريخ الميلاد:</label>
+                        <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('birthdate')
+                            <p class="text-red-500 text-sm">نسيت ملء تاريخ الميلاد</p>
+                        @enderror
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">مكان الميلاد:</label>
+                        <input type="text" name="place" value="{{ old('place') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('place')
+                            <p class="text-red-500 text-sm">نسيت ملء مكان الميلاد</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Address -->                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">العنوان:</label>
+                        <input type="text" name="residence" value="{{ old('residence') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('residence')
+                            <p class="text-red-500 text-sm">نسيت ملء مكان الإقامة</p>
+                        @enderror
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-gray-700">المستوى الدراسي:</label>
+                        <select name="scholar_year" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option>التمهيدي</option>
+                            <option>التحضيري</option>
+                            <option>الابتدائي</option>
+                            <option>المتوسطي</option>
+                            <option>الثانوي</option>
+                            <option>الجامعي</option>
+                            <option>خيار آخر</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">رقم الهاتف:</label>
+                        <input type="text" name="tel" value="{{ old('tel') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('tel')
+                            <p class="text-red-500 text-sm">نسيت ملء رقم الهاتف أو هو خاطئ</p>
+                        @enderror
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-gray-700 font-medium">رقم هاتف الولي:</label>
+                        <input type="text" name="dad_tel" value="{{ old('dad_tel') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('dad_tel')
+                            <p class="text-red-500 text-sm">نسيت ملء رقم هاتف الولي أو هو خاطئ</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Profile Picture -->
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">أدخل صورتك:</label>
+                    <input type="file" name="photo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
                     @error('photo')
-                        <div class="error">
-                            <?php echo 'نسيت وضع صورتك'; ?>
-                        </div>
+                        <p class="text-red-500 text-sm">لم تدخل صورتك</p>
                     @enderror
                 </div>
 
-                <div class="InputBox">
-                    <button type="submit">سجل الآن</button>
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-blue-600 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition">تسجيل</button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</section>
-</form>
-
-<script type="text/javascript">
-			( function() { // javascript document ready function
-				var firstJavaScriptInput1 = document.getElementById( 'first_javascript_input1' );
-                var firstJavaScriptInput2 = document.getElementById( 'first_javascript_input2' );
-				var firstJavaScriptCheckbox = document.getElementById( 'first_javascript_checkbox' );
-				
-				firstJavaScriptCheckbox.addEventListener( 'click', function() { // do things when the checkbox gets clicked
-					if ( this.checked ) { // check box is checked so disable input and select
-						firstJavaScriptInput1.disabled = 'disabled';
-                        firstJavaScriptInput2.disabled = 'disabled';
-					} else { // checkbox is not checked, make input and select editable
-						firstJavaScriptInput1.disabled = '';
-                        firstJavaScriptInput2.disabled = '';
-					}
- 				} );
-			} )();
-		</script>
-
+    </div>
 </body>
 </html>
