@@ -9,17 +9,17 @@
     <div class="relative max-w-4xl mx-auto">
         @php
             $images = [
-                ['src' => '/img/pdf2png/DOC001/DOC001-1.png', 'caption' => 'الصورة 1'],
-                ['src' => '/img/pdf2png/DOC002/DOC002-1.png', 'caption' => 'الصورة 2'],
-                ['src' => '/img/pdf2png/DOC003/DOC003-1.png', 'caption' => 'الصورة 3'],
-                ['src' => '/img/pdf2png/DOC004/DOC004-1.png', 'caption' => 'الصورة 4'],
-                ['src' => '/img/pdf2png/DOC005/DOC005-1.png', 'caption' => 'الصورة 5'],
-                ['src' => '/img/pdf2png/DOC006/DOC006-1.png', 'caption' => 'الصورة 6'],
-                ['src' => '/img/pdf2png/DOC007/DOC007-1.png', 'caption' => 'الصورة 7'],
-                ['src' => '/img/pdf2png/DOC008/DOC008-1.png', 'caption' => 'الصورة 8'],
-                ['src' => '/img/pdf2png/DOC009/DOC009-1.png', 'caption' => 'الصورة 9'],
-                ['src' => '/img/pdf2png/DOC010/DOC010-1.png', 'caption' => 'الصورة 10'],
-                ['src' => '/img/pdf2png/DOC011/DOC011-1.png', 'caption' => 'الصورة 11'],
+                ['src' => '/img/achievements/DOC001-1.png'],
+                ['src' => '/img/achievements/DOC002-1.png'],
+                ['src' => '/img/achievements/DOC003-1.png'],
+                ['src' => '/img/achievements/DOC004-1.png'],
+                ['src' => '/img/achievements/DOC005-1.png'],
+                ['src' => '/img/achievements/DOC006-1.png'],
+                ['src' => '/img/achievements/DOC007-1.png'],
+                ['src' => '/img/achievements/DOC008-1.png'],
+                ['src' => '/img/achievements/DOC009-1.png'],
+                ['src' => '/img/achievements/DOC010-1.png'],
+                ['src' => '/img/achievements/DOC011-1.png'],
             ];
         @endphp
 
@@ -27,7 +27,7 @@
             <div class="mySlides fade flex justify-center">
                 <div class="numbertext absolute top-0 left-0 mt-2 ml-2 text-white bg-green-800 px-2 py-1 rounded">{{ $index + 1 }} / {{ count($images) }}</div>
                 <img src="{{ $image['src'] }}" class="w-96 rounded-lg shadow-lg mx-auto">
-                <div class="text-center text-green-800 text-xl mt-4">{{ $image['caption'] }}</div>
+                <div class="text-center text-green-800 text-xl mt-4">الصورة {{ $index }}</div>
             </div>
         @endforeach
 

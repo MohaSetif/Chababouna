@@ -16,7 +16,7 @@
     <div class="min-h-screen flex flex-col lg:flex-row">
         <!-- Image Section -->
         <div class="lg:w-1/2 lg:fixed lg:left-0 h-64 lg:h-screen">
-            <img src="/img/243d2509f1657c6addbddbdba212492e.jpg" alt="Membership" class="w-full h-full object-cover"/>
+            <img src="/img/religion-city-aerial-photography-metropolis-wallpaper-preview.jpg" alt="Membership" class="w-full h-full object-cover"/>
         </div>
 
         <!-- Form Section -->
@@ -104,16 +104,11 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="block text-gray-700 font-medium">الصورة الشخصية:</label>
-                        <div class="flex items-center justify-center w-full">
-                            <label class="w-full flex flex-col items-center px-4 py-6 bg-white rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50">
-                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                </svg>
-                                <span class="mt-2 text-sm text-gray-600">اختر صورة</span>
-                                <input type="file" name="photo" class="hidden">
-                            </label>
-                        </div>
+                    <label class="block text-gray-700 font-medium">أدخل صورتك:</label>
+                    <input type="file" name="photo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                        @error('photo')
+                            <p class="text-red-500 text-sm">لم تدخل صورتك</p>
+                        @enderror
                     </div>
                 </div>
 

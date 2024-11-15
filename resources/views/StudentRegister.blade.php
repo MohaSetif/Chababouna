@@ -11,15 +11,16 @@
             font-family: 'Cairo', sans-serif;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        $(function() {
-            $('#first_jquery_checkbox').on('click', function() {
-                if (this.checked) {
-                    $('#first_jquery_input1, #first_jquery_input2').prop('disabled', true);
-                } else {
-                    $('#first_jquery_input1, #first_jquery_input2').prop('disabled', false);
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('first_jquery_checkbox');
+            const input1 = document.getElementById('first_jquery_input1');
+            const input2 = document.getElementById('first_jquery_input2');
+
+            checkbox.addEventListener('click', () => {
+                const isDisabled = checkbox.checked;
+                input1.disabled = isDisabled;
+                input2.disabled = isDisabled;
             });
         });
     </script>
