@@ -56,6 +56,8 @@
               <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm font-semibold">
                   <th class="px-4 py-2 text-right">الحالة</th>
+                  <th class="px-4 py-2 text-right">الاسم</th>
+                  <th class="px-4 py-2 text-right">اللقب</th>
                   <th class="px-4 py-2 text-right">تاريخ التسجيل</th>
                 </tr>
               </thead>
@@ -63,6 +65,8 @@
                 @foreach($school_regs as $school_reg)
                 <tr class="border-b hover:bg-gray-50">
                   <td class="px-4 py-2 text-gray-500 text-right">{{ $statusTranslations[$school_reg->status] }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $school_reg->name }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $school_reg->surname }}</td>
                   <td class="px-4 py-2 text-gray-500 text-right">{{ $school_reg->created_at }}</td>
                 </tr>
                 @endforeach
@@ -78,13 +82,17 @@
               <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm font-semibold">
                   <th class="px-4 py-2 text-right">الحالة</th>
+                  <th class="px-4 py-2 text-right">الاسم</th>
+                  <th class="px-4 py-2 text-right">اللقب</th>
                   <th class="px-4 py-2 text-right">تاريخ التسجيل</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($membership_regs as $membership_reg)
                 <tr class="border-b hover:bg-gray-50">
-                <td class="px-4 py-2 text-gray-500 text-right">{{ $statusTranslations[$membership_reg->status] }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $statusTranslations[$membership_reg->status] }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $membership_reg->name }}</td>
+                  <td class="px-4 py-2 text-gray-500 text-right">{{ $membership_reg->surname }}</td>
                   <td class="px-4 py-2 text-gray-500 text-right">{{ $membership_reg->created_at }}</td>
                 </tr>
                 @endforeach

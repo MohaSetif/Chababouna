@@ -95,30 +95,34 @@
             const fieldFilter = document.getElementById("FieldFilter").value.toLowerCase();
             const writerFilter = document.getElementById("WriterFilter").value.toLowerCase();
             const publisherFilter = document.getElementById("PublisherFilter").value.toLowerCase();
-            
-            const table = document.getElementById("userTable");
-            const rows = table.getElementsByTagName("tr");
 
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName("td");
-                const id = cells[0]?.innerText.toLowerCase();
-                const field = cells[2]?.innerText.toLowerCase();
-                const writer = cells[4]?.innerText.toLowerCase();
-                const publisher = cells[7]?.innerText.toLowerCase();
-                
-                const matchesSearch = !searchQuery || Object.values(cells).some(cell => cell.innerText.toLowerCase().includes(searchQuery));
+            const table = document.getElementById("userTable");
+            const rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName("td");
+
+                const id = cells[0]?.innerText.toLowerCase() || "";
+                const field = cells[2]?.innerText.toLowerCase() || "";
+                const title = cells[3]?.innerText.toLowerCase() || "";
+                const writer = cells[4]?.innerText.toLowerCase() || "";
+                const publisher = cells[7]?.innerText.toLowerCase() || "";
+
+                const matchesSearch = !searchQuery || [id, field, title, writer, publisher].some(text => text.includes(searchQuery));
                 const matchesField = !fieldFilter || field.includes(fieldFilter);
                 const matchesWriter = !writerFilter || writer.includes(writerFilter);
                 const matchesPublisher = !publisherFilter || publisher.includes(publisherFilter);
 
-                rows[i].style.display = matchesSearch && matchesField && matchesPublisher && matchesDate ? "" : "none";
-            }
+                row.style.display = matchesSearch && matchesField && matchesWriter && matchesPublisher ? "" : "none";
+            });
         }
 
-        // Reapply filters when dropdowns change
+        // Reapply filters when dropdowns or search input change
+        document.getElementById("SearchBar").addEventListener("input", applyFilters);
         document.getElementById("FieldFilter").addEventListener("change", applyFilters);
         document.getElementById("WriterFilter").addEventListener("change", applyFilters);
         document.getElementById("PublisherFilter").addEventListener("change", applyFilters);
     </script>
+
 </body>
 </html>
