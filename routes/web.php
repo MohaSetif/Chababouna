@@ -25,21 +25,13 @@ use TCG\Voyager\Facades\Voyager;
 |
 */
 
-Route::get('/', function () {
-    return redirect('الصفحة-الرئيسية');
-});
-
 Route::get('مكتبتنا', [Bookstore::class, 'list']);
-Route::view('الصفحة-الرئيسية', 'MainPage');
+Route::view('/', 'MainPage');
 
 Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function (){
-    
-    Route::get('/home', function () {
-        return redirect('الصفحة-الرئيسية');
-    });
     
     Route::get('حسابي', [ProfileCtrl::class, 'index']);
     

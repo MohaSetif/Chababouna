@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <br>
-                            <a class="btn btn-secondary" href="الصفحة-الرئيسية">الرجوع</a>
+                            <a class="btn btn-secondary" href="/">الرجوع</a>
                         </div>
                     </div>
                 </div>
