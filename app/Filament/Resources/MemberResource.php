@@ -51,7 +51,7 @@ class MemberResource extends Resource
                                     ->getUploadedFileNameForStorageUsing(
                                         fn (TemporaryUploadedFile $file): string => (string) str(
                                             $file->getClientOriginalName()
-                                        )->prepend('member_'),
+                                        ),
                                     ),
 
                                 Grid::make(2)
