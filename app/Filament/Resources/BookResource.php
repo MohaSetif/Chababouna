@@ -31,6 +31,7 @@ class BookResource extends Resource
             ->schema([
                 FileUpload::make('photo')
                     ->image()
+                    ->label(__('filament.forms.photo'))
                     ->directory('books')
                     ->visibility('public')
                     ->preserveFilenames()
@@ -44,48 +45,54 @@ class BookResource extends Resource
                 
                 TextInput::make('title')
                     ->required()
+                    ->label(__('filament.forms.title'))
                     ->maxLength(255)
                     ->columnSpan(2),
 
                 TextInput::make('writer_name')
                     ->required()
                     ->maxLength(255)
-                    ->label('Author Name'),
+                    ->label(__('filament.forms.author_name')),
 
                 TextInput::make('field')
                     ->required()
                     ->maxLength(255)
-                    ->label('Category/Field'),
+                    ->label(__('filament.forms.field')),
 
                 TextInput::make('copies')
+                ->label(__('filament.forms.copies'))
                     ->required()
                     ->numeric()
                     ->minValue(0),
 
                 TextInput::make('parts')
+                ->label(__('filament.forms.parts'))
                     ->required()
                     ->numeric()
                     ->minValue(1),
 
-                DatePicker::make('insert_date')
+                DatePicker::make('created_at')
                     ->required()
-                    ->label('Date Added'),
+                    ->label(__('filament.forms.created_at')),
 
                 TextInput::make('publication')
                     ->required()
                     ->maxLength(255)
-                    ->label('Publisher'),
+                    ->label(__('filament.forms.publisher')),
 
                 TextInput::make('documentation')
+                ->label(__('filament.forms.documentation'))
                     ->required()
                     ->maxLength(255),
 
                 Textarea::make('review')
+                ->label(__('filament.forms.review'))
                     ->rows(3)
                     ->maxLength(255)
                     ->columnSpan(2),
 
                 Textarea::make('note')
+                ->label(__('filament.forms.note'))
                     ->rows(3)
                     ->maxLength(255)
                     ->columnSpan(2),
@@ -98,27 +105,31 @@ class BookResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('photo')
+                ->label(__('filament.forms.photo'))
                     ->square()
                     ->size(50),
                 
                 TextColumn::make('title')
+                ->label(__('filament.forms.title'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('writer_name')
-                    ->label('Author')
+                ->label(__('filament.forms.author_name'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('field')
-                    ->label('Category')
+                ->label(__('filament.forms.field'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('copies')
+                ->label(__('filament.forms.copies'))
                     ->sortable(),
 
                 TextColumn::make('parts')
+                ->label(__('filament.forms.parts'))
                     ->sortable(),
             ])
             ->filters([
@@ -156,5 +167,15 @@ class BookResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.navigation.books');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('filament.management.books');
     }
 }

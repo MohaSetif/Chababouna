@@ -25,6 +25,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            // ->spa()
             ->id('admin')
             ->path('chababouna_admin')
             ->login()

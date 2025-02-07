@@ -1,4 +1,4 @@
-<section id="committees" class="py-16 bg-gradient-to-br from-white to-green-50">
+<section id="committees" class="py-16 bg-white">
     <div class="container mx-auto px-6 max-w-6xl">
         <h2 class="text-4xl font-bold text-green-800 mb-6 text-center">لــجـانـنـا</h2>
         <p class="text-lg text-gray-700 mb-12 leading-relaxed text-center">
@@ -60,7 +60,7 @@
                     { name: 'لجنة التجهيز و الصيانة', content: 'محتوى لجنة التجهيز و الصيانة و الوسائل' }
                 ]
             }" x-for="committee in committees" :key="committee.name">
-                <div x-data="{ open: false }" class="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
+                <div x-data="{ open: false }" class="bg-green-100 rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
                     <button @click="open = !open" 
                             class="w-full text-right py-4 px-6 flex justify-between items-center hover:bg-green-50 rounded-lg transition-colors duration-200"
                             :class="{ 'rounded-b-none': open }">

@@ -29,20 +29,24 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label(__('filament.forms.name'))
                     ->required()
                     ->maxLength(255),
                 Select::make('role_id')
+                    ->label(__('filament.forms.role'))
                     ->options([
                         0 => 'User',
                         1 => 'Admin',
                     ])
                     ->required(),
                 TextInput::make('email')
+                    ->label(__('filament.forms.email'))
                     ->email()
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->maxLength(255),
                 TextInput::make('password')
+                    ->label(__('filament.forms.password'))
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => filled($state))
@@ -55,12 +59,15 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('filament.forms.name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
+                    ->label(__('filament.forms.email'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('role_id')
+                    ->label(__('filament.forms.role'))
                     ->formatStateUsing(fn (int $state): string => match ($state) {
                         0 => 'User',
                         1 => 'Admin',
@@ -68,9 +75,11 @@ class UserResource extends Resource
                     })
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament.forms.created_at'))
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('email_verified_at')
+                    ->label(__('filament.forms.email_verified_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -108,5 +117,15 @@ class UserResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.navigation.users');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('filament.management.members');
     }
 }

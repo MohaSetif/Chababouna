@@ -17,6 +17,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -38,6 +39,7 @@ class StudentResource extends Resource
                             ->schema([
                                 FileUpload::make('photo')
                                     ->image()
+                                    ->label(__('filament.forms.photo'))
                                     ->directory('students')
                                     ->visibility('public')
                                     ->preserveFilenames()
@@ -52,14 +54,17 @@ class StudentResource extends Resource
                                 Grid::make(2)
                                     ->schema([
                                         TextInput::make('name')
+                                        ->label(__('filament.forms.name'))
                                             ->required()
                                             ->maxLength(255),
 
                                         TextInput::make('surname')
+                                        ->label(__('filament.forms.surname'))
                                             ->required()
                                             ->maxLength(255),
 
                                         Select::make('sex')
+                                        ->label(__('filament.forms.sex'))
                                             ->required()
                                             ->options([
                                                 'male' => 'ذكر',
@@ -67,6 +72,7 @@ class StudentResource extends Resource
                                             ]),
 
                                         TextInput::make('job')
+                                        ->label(__('filament.forms.job'))
                                             ->required()
                                             ->maxLength(255),
                                     ]),
@@ -78,11 +84,11 @@ class StudentResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 TextInput::make('dad_job')
-                                    ->label("Father's Job")
+                                ->label(__('filament.forms.dad_job'))
                                     ->maxLength(255),
 
                                 TextInput::make('mom_job')
-                                    ->label("Mother's Job")
+                                    ->label(__('filament.forms.mom_job'))
                                     ->maxLength(255),
                             ]),
                     ]),
@@ -95,12 +101,12 @@ class StudentResource extends Resource
                                     ->format('Y-m-d')
                                     ->displayFormat('d/m/Y')
                                     ->seconds(false)
-                                    ->label("Student's Birthdate")
+                                    ->label(__('filament.forms.birthdate'))
                                     ->required(),
 
                                 TextInput::make('place')
                                     ->required()
-                                    ->label('Birth Place')
+                                    ->label(__('filament.forms.place'))
                                     ->columnSpan(3),
                             ]),
                     ]),
@@ -110,28 +116,28 @@ class StudentResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 TextInput::make('residence')
-                                    ->label("Address")
+                                ->label(__('filament.forms.residence'))
                                     ->required()
                                     ->maxLength(255),
 
                                 TextInput::make('study_local')
-                                    ->label("Study Local")
+                                ->label(__('filament.forms.study_local'))
                                     ->maxLength(255),
 
                                 TextInput::make('email')
-                                    ->label("Email")
+                                ->label(__('filament.forms.email'))
                                     ->email()
                                     ->required()
                                     ->maxLength(255),
 
                                 TextInput::make('dad_tel')
-                                    ->label("Parent's Phone number")
+                                ->label(__('filament.forms.dad_tel'))
                                     ->tel()
                                     ->required()
                                     ->maxLength(255),
 
                                 TextInput::make('tel')
-                                    ->label("Phone number")
+                                ->label(__('filament.forms.tel'))
                                     ->tel()
                                     ->required()
                                     ->maxLength(255),
@@ -143,7 +149,7 @@ class StudentResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 Select::make('scholar_year')
-                                    ->label('المستوى الدراسي')
+                                ->label(__('filament.forms.scholar_year'))
                                     ->options([
                                         'التمهيدي' => 'التمهيدي',
                                         'التحضيري' => 'التحضيري',
@@ -164,35 +170,46 @@ class StudentResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('photo')
+                ->label(__('filament.forms.photo'))
                     ->square()
                     ->size(40),
 
                 TextColumn::make('name')
+                ->label(__('filament.forms.name'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('surname')
+                ->label(__('filament.forms.surname'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('sex')
+                ->label(__('filament.forms.sex'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('email')
+                ->label(__('filament.forms.email'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('tel')
+                ->label(__('filament.forms.tel'))
                     ->searchable(),
 
                 TextColumn::make('scholar_year')
-                    ->label('Academic Year')
+                ->label(__('filament.forms.scholar_year'))
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('status')
-                    ->label('status')
+                BadgeColumn::make('status')
+                    ->label(__('filament.forms.status'))
+                    ->colors([
+                        'warning' => 'pending',
+                        'success' => 'accepted',
+                        'danger' => 'rejected',
+                    ])
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('sex')
@@ -244,5 +261,15 @@ class StudentResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.navigation.students');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('filament.management.students');
     }
 }

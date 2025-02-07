@@ -19,6 +19,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,6 +43,7 @@ class MemberResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 FileUpload::make('photo')
+                                    ->label(__('filament.forms.photo'))
                                     ->image()
                                     ->directory('members')
                                     ->visibility('public')
@@ -57,17 +59,17 @@ class MemberResource extends Resource
                                 Grid::make(2)
                                     ->schema([
                                         TextInput::make('name')
-                                            ->label("Name")
+                                        ->label(__('filament.forms.name'))
                                             ->required()
                                             ->maxLength(255),
 
                                         TextInput::make('surname')
-                                            ->label("Surname")
+                                        ->label(__('filament.forms.surname'))
                                             ->required()
                                             ->maxLength(255),
 
                                         Select::make('sex')
-                                            ->label("Gender")
+                                        ->label(__('filament.forms.sex'))
                                             ->required()
                                             ->options([
                                                 'male' => 'ذكر',
@@ -75,7 +77,7 @@ class MemberResource extends Resource
                                             ]),
 
                                         TextInput::make('job')
-                                            ->label("Job")
+                                        ->label(__('filament.forms.job'))
                                             ->maxLength(255),
                                     ]),
                             ]),
@@ -89,12 +91,12 @@ class MemberResource extends Resource
                                     ->format('Y-m-d')
                                     ->displayFormat('d/m/Y')
                                     ->seconds(false)
-                                    ->label("Member's Birthdate")
+                                    ->label(__('filament.forms.birthdate'))
                                     ->required(),
 
                                 TextInput::make('place')
                                     ->required()
-                                    ->label('Birth Place')
+                                    ->label(__('filament.forms.place'))
                                     ->columnSpan(3),
                             ]),
                     ]),
@@ -105,12 +107,12 @@ class MemberResource extends Resource
                             ->schema([
                                 Textarea::make('hobby')
                                     ->maxLength(255)
-                                    ->label("Hobbies")
+                                    ->label(__('filament.forms.hobby'))
                                     ->required(),
 
                                 TextInput::make('help')
                                     ->required()
-                                    ->label('What he/she can provide')
+                                    ->label(__('filament.forms.help'))
                                     ->columnSpan(3),
                             ]),
                     ]),
@@ -121,18 +123,18 @@ class MemberResource extends Resource
                         Grid::make(2)
                             ->schema([
                                 TextInput::make('residence')
-                                    ->label("Address")
+                                ->label(__('filament.forms.residence'))
                                     ->required()
                                     ->maxLength(255),
 
                                 TextInput::make('email')
-                                    ->label("Email")
+                                ->label(__('filament.forms.email'))
                                     ->email()
                                     ->required()
                                     ->maxLength(255),
 
                                 TextInput::make('tel')
-                                    ->label("Phone number")
+                                ->label(__('filament.forms.tel'))
                                     ->tel()
                                     ->required()
                                     ->maxLength(255),
@@ -140,6 +142,7 @@ class MemberResource extends Resource
                     ]),
 
                     Select::make('status')
+                    ->label(__('filament.forms.status'))
                     ->required()
                     ->options([
                         'pending' => 'pending',
@@ -154,29 +157,41 @@ class MemberResource extends Resource
         return $table
         ->columns([
             ImageColumn::make('photo')
+            ->label(__('filament.forms.photo'))
                 ->square()
                 ->size(40),
 
             TextColumn::make('name')
+            ->label(__('filament.forms.name'))
                 ->searchable()
                 ->sortable(),
 
             TextColumn::make('surname')
+            ->label(__('filament.forms.surname'))
                 ->searchable()
                 ->sortable(),
 
             TextColumn::make('sex')
+            ->label(__('filament.forms.sex'))
                 ->searchable()
                 ->sortable(),
 
             TextColumn::make('email')
+            ->label(__('filament.forms.email'))
                 ->searchable()
                 ->sortable(),
 
             TextColumn::make('tel')
+            ->label(__('filament.forms.tel'))
                 ->searchable(),
 
-            SelectColumn::make('status')
+            BadgeColumn::make('status')
+                ->label(__('filament.forms.status'))
+                ->colors([
+                    'warning' => 'pending',
+                    'success' => 'accepted',
+                    'danger' => 'rejected',
+                ])
         ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
@@ -218,5 +233,15 @@ class MemberResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.navigation.members');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('filament.management.members');
     }
 }
