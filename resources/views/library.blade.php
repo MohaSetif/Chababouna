@@ -1,3 +1,9 @@
+@php
+    $fields = collect($books->items())->pluck('field')->unique();
+    $writers = collect($books->items())->pluck('writer_name')->unique();
+    $publications = collect($books->items())->pluck('publication')->unique();
+@endphp
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -28,20 +34,20 @@
             <div class="flex gap-4">
                 <select id="FieldFilter" class="w-1/3 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
                     <option value="">تصفية حسب التخصص</option>
-                    @foreach($books as $book)
-                        <option value="{{ $book->field }}">{{ $book->field }}</option>
+                    @foreach( $fields as $field )
+                        <option value="{{ $field }}">{{ $field }}</option>
                     @endforeach
                 </select>
                 <select id="WriterFilter" class="w-1/3 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
                     <option value="">تصفية حسب الكاتب</option>
-                    @foreach($books as $book)
-                        <option value="{{ $book->writer_name }}">{{ $book->writer_name }}</option>
+                    @foreach( $writers as $writer )
+                        <option value="{{ $writer }}">{{ $writer }}</option>
                     @endforeach
                 </select>
                 <select id="PublisherFilter" class="w-1/3 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
                     <option value="">تصفية حسب دار النشر</option>
-                    @foreach($books as $book)
-                        <option value="{{ $book->publication }}">{{ $book->publication }}</option>
+                    @foreach( $publications as $publication )
+                        <option value="{{ $publication }}">{{ $publication }}</option>
                     @endforeach
                 </select>
             </div>
@@ -52,7 +58,6 @@
                 <thead class="bg-gray-200 text-gray-700">
                     <tr>
                         <th class="px-4 py-2">الرقم</th>
-                        <th class="px-4 py-2">تاريخ الإدخال</th>
                         <th class="px-4 py-2">التخصص</th>
                         <th class="px-4 py-2">العنوان</th>
                         <th class="px-4 py-2">المؤلف</th>
@@ -68,24 +73,26 @@
                 <tbody class="text-gray-600">
                     @foreach($books as $item)
                     <tr class="hover:bg-gray-100">
-                        <td class="border px-4 py-2">{{ $item->id }}</td>
-                        <td class="border px-4 py-2">{{ $item->created_at }}</td>
-                        <td class="border px-4 py-2">{{ $item->field }}</td>
-                        <td class="border px-4 py-2">{{ $item->title }}</td>
-                        <td class="border px-4 py-2">{{ $item->writer_name }}</td>
-                        <td class="border px-4 py-2">{{ $item->review }}</td>
-                        <td class="border px-4 py-2">{{ $item->documentation }}</td>
-                        <td class="border px-4 py-2">{{ $item->publication }}</td>
-                        <td class="border px-4 py-2">{{ $item->parts }}</td>
-                        <td class="border px-4 py-2">{{ $item->note }}</td>
-                        <td class="border px-4 py-2">{{ $item->copies }}</td>
+                        <td class="border px-4 py-2">{{ $item['id'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['field'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['title'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['writer_name'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['review'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['documentation'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['publication'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['parts'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['note'] }}</td>
+                        <td class="border px-4 py-2">{{ $item['copies'] }}</td>
                         <td class="border px-4 py-2">
-                            <img src="{{ asset('storage/' . $item->photo) }}" alt="Book cover" class="w-16 h-auto object-cover">
+                            <img src="{{ asset('storage/' . $item['photo']) }}" alt="Book cover" class="w-16 h-auto object-cover">
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="mt-4 flex justify-center items-center py-2 text-right">
+            {{ $books->links() }}
         </div>
     </div>
 
