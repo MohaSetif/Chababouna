@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->timestamps();
-            $table->string('photo');
-            $table->string('copies');
-            $table->string('note');
-            $table->integer('parts');
-            $table->string('publication');
-            $table->string('documentation');
-            $table->string('review');
-            $table->string('writer_name');
-            $table->string('title');
-            $table->string('field');
+            $table->string('photo')->nullable();
+            $table->string('copies')->nullable();
+            $table->string('note')->nullable();
+            $table->integer('parts')->nullable();
+            $table->string('publication')->nullable();
+            $table->string('documentation')->nullable();
+            $table->string('review')->nullable();
+            $table->string('writer_name')->nullable();
+            $table->string('title')->nullable();
+            $table->string('field')->nullable();
             $table->increments('id');
         });
     }
